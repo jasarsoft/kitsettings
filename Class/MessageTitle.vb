@@ -1,35 +1,27 @@
 ﻿Public NotInheritable Class MessageTitle
 
-    Private appTitle As String
-    Private _titleInfo As String
-    Private _titleError As String
-    Private _titleWarning As String
-
-    Public Sub New()
-
-        Dim app As Application = New Application()
-        appTitle = app.Title
-
-        _titleInfo = appTitle & " | Info"
-        _titleError = appTitle & " | Error"
-        _titleWarning = appTitle & " | Warning"
-    End Sub
+    Private Structure Title
+        Private Const appTitle As String = "Kitserver 6 Settings"
+        Public Const titleInfo As String = appTitle & " | Information"
+        Public Const titleError As String = appTitle & " | Error"
+        Public Const titleWarning As String = appTitle & " | Warning"
+    End Structure
 
     Public ReadOnly Property TitleInfo
         Get
-            Return _titleInfo
+            Return Title.titleInfo
         End Get
     End Property
 
     Public ReadOnly Property TitleError
         Get
-            Return _titleError
+            Return Title.titleError
         End Get
     End Property
 
     Public ReadOnly Property TitleWarning
         Get
-            Return _titleWarning
+            Return Title.titleWarning
         End Get
     End Property
 

@@ -1,4 +1,4 @@
-﻿Public Class Application
+﻿Public NotInheritable Class Application
 
     Private Structure AppInfo
         Public Const appName As String = "kitsettings.exe"
@@ -8,31 +8,31 @@
         Public Const appWebsite As String = "www.github/jasarsoft/kitsettings"
     End Structure
 
-    Protected Friend ReadOnly Property Name As String
+    Public ReadOnly Property Name As String
         Get
             Return AppInfo.appName
         End Get
     End Property
 
-    Protected Friend ReadOnly Property Title As String
+    Public ReadOnly Property Title As String
         Get
             Return AppInfo.appTitle
         End Get
     End Property
 
-    Protected Friend ReadOnly Property Version As String
+    Public ReadOnly Property Version As String
         Get
             Return AppInfo.appVersion
         End Get
     End Property
 
-    Protected Friend ReadOnly Property Developer As String
+    Public ReadOnly Property Developer As String
         Get
             Return AppInfo.appDeveloper
         End Get
     End Property
 
-    Protected Friend ReadOnly Property Website As String
+    Public ReadOnly Property Website As String
         Get
             Return AppInfo.appWebsite
         End Get

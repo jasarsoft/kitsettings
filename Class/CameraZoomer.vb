@@ -3,58 +3,65 @@
 Public NotInheritable Class CameraZoomer
     Inherits ConfigurationFile
 
-    Private Const maxValue As Integer = 1420
-    Private Const minValue As Integer = 800
+    Private _cameraZoom As Integer
+    Private _stadiumRoof As Boolean
+    Private _stadiumClipping As Boolean
 
-    Private Const _fileName As String = "camerazoomer"
-    Private Const _titleName As String = "Camera Zoomer"
+    Private Structure Info
+        Public Const fileName As String = "camerazoomer"
+        Public Const titleName As String = "Camera Zoomer"
+    End Structure
 
-    Private Structure ParameterCFG
+    Private Structure Values
+        Public Const min As Integer = 800
+        Public Const max As Integer = 1420
+    End Structure
+
+    Private Structure Parameter
         Public Const mainSection As String = "[camera]"
         Public Const cameraZoom As String = "zoom"
         Public Const stadiumRoof As String = "add_stadium_roof"
         Public Const stadiumClipping As String = "fix_stadium_clipping"
     End Structure
 
-    Private _cameraZoom As Integer
-    Private _stadiumRoof As Boolean
-    Private _stadiumClipping As Boolean
-
+    
     Public Sub New()
         DefaultValue()
     End Sub
 
 #Region "Info Parameter Property"
-    Public ReadOnly Property FileName As String
+
+    Public Overloads ReadOnly Property FileName As String
         Get
-            Return _fileName & MyBase.ExtensionCFG
+            Return Info.fileName & MyBase.FileName
         End Get
     End Property
 
-    Public ReadOnly Property TitleName As String
+    Public Overloads ReadOnly Property TitleName As String
         Get
-            Return _titleName & MyBase.SubTitleCFG
+            Return Info.titleName & MyBase.TitleName
         End Get
     End Property
+
 #End Region
 
 #Region "Main Parameter Property"
-    Public Property CameraZoomValue As Integer
+    Public Property CameraZoom As Integer
         Get
             Return _cameraZoom
         End Get
         Set(value As Integer)
-            If value > maxValue Then
-                _cameraZoom = maxValue
-            ElseIf value < minValue Then
-                _cameraZoom = minValue
+            If value > Values.max Then
+                _cameraZoom = Values.max
+            ElseIf value < Values.min Then
+                _cameraZoom = Values.min
             Else
                 _cameraZoom = value
             End If
         End Set
     End Property
 
-    Public Property StadiumRoofEnable As Boolean
+    Public Property StadiumRoof As Boolean
         Get
             Return _stadiumRoof
         End Get
@@ -63,7 +70,7 @@ Public NotInheritable Class CameraZoomer
         End Set
     End Property
 
-    Public Property StadiumClippingEnable As Boolean
+    Public Property StadiumClipping As Boolean
         Get
             Return _stadiumClipping
         End Get
@@ -73,25 +80,6 @@ Public NotInheritable Class CameraZoomer
     End Property
 #End Region
 
-#Region "CFG Parameter Property"
-    Public ReadOnly Property CameraZoomParam As String
-        Get
-            Return ParameterCFG.cameraZoom
-        End Get
-    End Property
-
-    Public ReadOnly Property StadiumRoofParam As String
-        Get
-            Return ParameterCFG.stadiumRoof
-        End Get
-    End Property
-
-    Public ReadOnly Property StadiumClippingParam As String
-        Get
-            Return ParameterCFG.stadiumClipping
-        End Get
-    End Property
-#End Region
 
 #Region "Methods"
     Private Sub DefaultValue()
@@ -102,130 +90,105 @@ Public NotInheritable Class CameraZoomer
 
     Private Function GenerateData() As String
         Dim dataText As String
+        Dim equally As String = " = "
 
-        dataText = ParameterCFG.mainSection & Environment.NewLine
-        dataText += CameraZoomParam & MyBase.OperatorCFG & Me.CameraZoomValue & Environment.NewLine
-        dataText += StadiumRoofParam & MyBase.OperatorCFG & MyBase.ConvertEnable(StadiumRoofEnable).ToString & Environment.NewLine
-        dataText += StadiumClippingParam & MyBase.OperatorCFG & MyBase.ConvertEnable(StadiumClippingEnable).ToString
+        dataText = Parameter.mainSection & Environment.NewLine
+        dataText += Parameter.cameraZoom & equally & _cameraZoom.ToString() & Environment.NewLine
+        dataText += Parameter.stadiumRoof & equally & ConvertEnable(_stadiumRoof) & Environment.NewLine
+        dataText += Parameter.stadiumClipping & equally & ConvertEnable(_stadiumClipping)
 
         Return dataText
     End Function
 
-    Private Function ReadError() As Boolean
+    Private Sub ReadError()
+        Dim msgText As String
         Dim msgResult As DialogResult
         Dim msgTitle As MessageTitle = New MessageTitle()
-        Dim msgText As MessageText.CfgFile = New MessageText.CfgFile()
 
-        msgResult = MessageBox.Show(Me.TitleName & msgText.ErrorRead, msgTitle.TitleWarning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-        DefaultValue()
+        msgText = TitleName & " contained an invalid parameter." & Environment.NewLine
+        msgText += "Do you want to correct the configuration file on" & Environment.NewLine
+        msgText += "the current or recommeded settings?"
+
+        msgResult = MessageBox.Show(msgText, msgTitle.TitleWarning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
 
         If msgResult = DialogResult.Yes Then
-            If Me.CreateFile() Then
-                Return True
-            Else
-                Return False
-            End If
+            CreateFile()
+        End If
+    End Sub
+
+    Public Overloads Function ExistFile() As Boolean
+
+        If MyBase.ExistFile(FileName, TitleName, GenerateData()) Then
+            Return True
         Else
             Return False
         End If
+
     End Function
 
-    Public Function ExistFile() As Boolean
+    Public Overloads Function DeleteFile() As Boolean
 
-        If MyBase.ExistCFG(Me.FileName) Then
+        If MyBase.DeleteFile(FileName, TitleName) Then
             Return True
         Else
-            Dim msgReasult As DialogResult
+            Return False
+        End If
+
+    End Function
+
+    Public Overloads Function CreateFile() As Boolean
+
+        If MyBase.CreateFile(FileName, TitleName, GenerateData()) Then
+            Return True
+        Else
+            Return False
+        End If
+
+    End Function
+
+    Public Overloads Function WriteFile() As Boolean
+
+        If MyBase.WriteFile(FileName, TitleName, GenerateData()) Then
+            Return True
+        Else
+            Dim msgText As String
             Dim msgTitle As MessageTitle = New MessageTitle()
-            Dim msgText As MessageText.CfgFile = New MessageText.CfgFile()
+            Dim msgSubText As MessageText = New MessageText()
 
-            msgReasult = MessageBox.Show(Me.TitleName & msgText.ErrorExist, msgTitle.TitleWarning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-            If msgReasult = DialogResult.Yes Then
-                If Me.CreateFile() Then
-                    Return True
-                Else
-                    Return False
-                End If
-            End If
-        End If
-
-        Return False
-    End Function
-
-    Public Function DeleteFile() As Boolean
-
-        If MyBase.ExistCFG(Me.FileName) Then
-            If MyBase.DeleteCFG(Me.FileName) Then
-                Return True
-            Else
-                Dim msgTitle As MessageTitle = New MessageTitle()
-                Dim msgText As MessageText.CfgFile = New MessageText.CfgFile()
-
-                MessageBox.Show(Me.TitleName & msgText.ErrorDelete, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return False
-            End If
-        Else
-            Return True
-        End If
-
-    End Function
-
-    Public Function CreateFile()
-
-        Dim msgTitle As MessageTitle = New MessageTitle()
-        Dim msgText As MessageText.CfgFile = New MessageText.CfgFile()
-
-        If WriteCFG(Me.FileName, Me.TitleName, Me.GenerateData()) Then
-            MessageBox.Show(Me.TitleName & msgText.InfoCreate, msgTitle.TitleInfo, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Return True
-        Else
-            MessageBox.Show(Me.TitleName & msgText.ErrorWrite, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            msgText = TitleName & " configuration file can not be written." & Environment.NewLine & msgSubText.ID00
+            MessageBox.Show(msgText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
-        
+
     End Function
 
-    Public Function WriteFile() As Boolean
-
-        If WriteCFG(Me.FileName, Me.TitleName, Me.GenerateData()) Then
-            Return True
-        Else
-            Dim msgTitle As MessageTitle = New MessageTitle()
-            Dim msgText As MessageText.CfgFile = New MessageText.CfgFile()
-
-            MessageBox.Show(Me.TitleName & msgText.ErrorWrite, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
-
-            Return False
-        End If
-    End Function
-
-    Public Function ReadFile() As Boolean
+    Public Overloads Function ReadFile() As Boolean
         Dim readValue As String
 
-        readValue = MyBase.ReadCFG(Me.FileName, Me.CameraZoomParam)
+        readValue = ReadFile(FileName, Parameter.cameraZoom)
 
         If IsNumeric(readValue) Then
-            Me._cameraZoom = Convert.ToInt32(readValue)
+            _cameraZoom = Convert.ToInt32(readValue)
         Else
-            Me.ReadError()
+            ReadError()
             Return False
         End If
 
-        readValue = MyBase.ReadCFG(FileName, StadiumRoofParam)
+        readValue = ReadFile(FileName, Parameter.stadiumRoof)
 
         If IsNumeric(readValue) Then
-            Me._stadiumRoof = MyBase.ConvertValue(readValue)
+            _stadiumRoof = ConvertValue(readValue)
         Else
-            Me.ReadError()
+            ReadError()
             Return False
         End If
 
-        readValue = MyBase.ReadCFG(FileName, StadiumClippingParam)
+        readValue = ReadFile(FileName, Parameter.stadiumClipping)
 
         If IsNumeric(readValue) Then
-            Me._stadiumClipping = MyBase.ConvertValue(readValue)
+            _stadiumClipping = ConvertValue(readValue)
         Else
-            Me.ReadError()
+            ReadError()
             Return False
         End If
 
