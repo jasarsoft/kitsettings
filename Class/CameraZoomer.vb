@@ -100,21 +100,23 @@ Public NotInheritable Class CameraZoomer
         Return dataText
     End Function
 
-    Private Sub ReadError()
-        Dim msgText As String
+    Private Function ReadError() As Boolean
+        Dim tmpText As String
         Dim msgResult As DialogResult
+        Dim msgText As MessageText = New MessageText()
         Dim msgTitle As MessageTitle = New MessageTitle()
 
-        msgText = TitleName & " contained an invalid parameter." & Environment.NewLine
-        msgText += "Do you want to correct the configuration file on" & Environment.NewLine
-        msgText += "the current or recommeded settings?"
+        tmpText = TitleName & msgText.ID10 & Environment.NewLine & msgText.ID01
 
-        msgResult = MessageBox.Show(msgText, msgTitle.TitleWarning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-
+        msgResult = MessageBox.Show(tmpText, msgTitle.TitleWarning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If msgResult = DialogResult.Yes Then
-            CreateFile()
+            If CreateFile() Then
+                Return True
+            End If
         End If
-    End Sub
+
+        Return False
+    End Function
 
     Public Overloads Function ExistFile() As Boolean
 
@@ -151,12 +153,12 @@ Public NotInheritable Class CameraZoomer
         If MyBase.WriteFile(FileName, TitleName, GenerateData()) Then
             Return True
         Else
-            Dim msgText As String
+            Dim tmpText As String
+            Dim msgText As MessageText = New MessageText()
             Dim msgTitle As MessageTitle = New MessageTitle()
-            Dim msgSubText As MessageText = New MessageText()
 
-            msgText = TitleName & " configuration file can not be written." & Environment.NewLine & msgSubText.ID00
-            MessageBox.Show(msgText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            tmpText = TitleName & msgText.ID11 & Environment.NewLine & msgText.ID00
+            MessageBox.Show(tmpText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
 
@@ -170,8 +172,11 @@ Public NotInheritable Class CameraZoomer
         If IsNumeric(readValue) Then
             _cameraZoom = Convert.ToInt32(readValue)
         Else
-            ReadError()
-            Return False
+            If ReadError() Then
+                Return True
+            Else
+                Return False
+            End If
         End If
 
         readValue = ReadFile(FileName, Parameter.stadiumRoof)
@@ -179,8 +184,11 @@ Public NotInheritable Class CameraZoomer
         If IsNumeric(readValue) Then
             _stadiumRoof = ConvertValue(readValue)
         Else
-            ReadError()
-            Return False
+            If ReadError() Then
+                Return True
+            Else
+                Return False
+            End If
         End If
 
         readValue = ReadFile(FileName, Parameter.stadiumClipping)
@@ -188,8 +196,11 @@ Public NotInheritable Class CameraZoomer
         If IsNumeric(readValue) Then
             _stadiumClipping = ConvertValue(readValue)
         Else
-            ReadError()
-            Return False
+            If ReadError() Then
+                Return True
+            Else
+                Return False
+            End If
         End If
 
         Return True

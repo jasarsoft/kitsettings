@@ -24,15 +24,14 @@ Public MustInherit Class ConfigurationFile
         If File.Exists(fileName) Then
             Return True
         Else
-            Dim msgText As String
+            Dim tmpText As String
             Dim msgReasult As DialogResult
+            Dim msgText As MessageText = New MessageText()
             Dim msgTitle As MessageTitle = New MessageTitle()
 
-            msgText = titleName & " does not exist." & Environment.NewLine
-            msgText += "Do you want to create a new configuration file" & Environment.NewLine
-            msgText += "with a recommended default settings?"
-
-            msgReasult = MessageBox.Show(msgText, msgTitle.TitleWarning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            tmpText = titleName & msgText.ID12 & Environment.NewLine & msgText.ID02
+            
+            msgReasult = MessageBox.Show(tmpText, msgTitle.TitleWarning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
             If msgReasult = DialogResult.Yes Then
                 If CreateFile(fileName, titleName, fileData) Then
                     Return True
@@ -53,12 +52,12 @@ Public MustInherit Class ConfigurationFile
                 File.Delete(fileName)
                 Return True
             Catch ex As Exception
-                Dim msgText As String
+                Dim tmpText As String
+                Dim msgText As MessageText = New MessageText()
                 Dim msgTitle As MessageTitle = New MessageTitle()
-                Dim msgSubText As MessageText = New MessageText()
 
-                msgText = titleName & " can not be deleted." & Environment.NewLine & msgSubText.ID00
-                MessageBox.Show(msgText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                tmpText = titleName & msgText.ID13 & Environment.NewLine & msgText.ID00
+                MessageBox.Show(tmpText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
             End Try
         Else
@@ -68,28 +67,27 @@ Public MustInherit Class ConfigurationFile
     End Function
 
     Protected Overridable Function CreateFile(ByVal fileName As String, ByVal titleName As String, ByVal fileData As String) As Boolean
-        Dim msgText As String
+        Dim tmpText As String
+        Dim msgText As MessageText = New MessageText()
         Dim msgTitle As MessageTitle = New MessageTitle()
-        Dim msgSubText As MessageText = New MessageText()
 
         If File.Exists(fileName) Then
             Try
                 File.Delete(fileName)
             Catch ex As Exception
-                msgText = titleName & " can not be modified." & Environment.NewLine & msgSubText.ID00
-                MessageBox.Show(msgText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                tmpText = titleName & msgText.ID14 & Environment.NewLine & msgText.ID00
+                MessageBox.Show(tmpText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
             End Try
         End If
 
         If WriteFile(fileName, titleName, fileData) Then
-            msgText = titleName & " was successfully created" & Environment.NewLine
-            msgText += "with an inital recommended settings."
-            MessageBox.Show(msgText, msgTitle.TitleInfo, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            tmpText = titleName & msgText.ID16
+            MessageBox.Show(tmpText, msgTitle.TitleInfo, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Return True
         Else
-            msgText = " can not be created." & Environment.NewLine & msgSubText.ID00
-            MessageBox.Show(msgText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            tmpText = msgText.ID15 & Environment.NewLine & msgText.ID00
+            MessageBox.Show(tmpText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
 
@@ -127,7 +125,6 @@ Public MustInherit Class ConfigurationFile
                 Do
                     line = sr.ReadLine
                     If line.Contains(keyValue) Then
-                        'If line.StartsWith(keyValue.Substring(0, 1)) Then
                         If line.StartsWith(keyValue) Then
                             line = line.Replace(keyValue, "").Replace("=", "").Replace(" ", "")
                             Return line
