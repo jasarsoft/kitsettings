@@ -1,51 +1,82 @@
-﻿Imports System.IO
-
+﻿
+''' <summary>
+''' Kitserver 6 Settings Camera Zoomer Configuration File
+''' </summary>
 Public NotInheritable Class CameraZoomer
     Inherits ConfigurationFile
 
-    Private _cameraZoom As Integer
-    Private _stadiumRoof As Boolean
-    Private _stadiumClipping As Boolean
-
+#Region "Constants"
+    ''' <summary>
+    ''' Camera Zoomer Main Information
+    ''' </summary>
     Private Structure Info
+        ''' <summary>Camera Zoomer Configuration File Name</summary>
         Public Const fileName As String = "camerazoomer"
+        ''' <summary>Camera Zoomer Configuration Title Name</summary>
         Public Const titleName As String = "Camera Zoomer"
     End Structure
 
+    ''' <summary>
+    ''' Camera Zoom Min/Max Values
+    ''' </summary>
     Private Structure Values
+        ''' <summary>Minimal Zoom Value</summary>
         Public Const min As Integer = 800
+        ''' <summary>Maximal Zoom Value</summary>
         Public Const max As Integer = 1420
     End Structure
 
+    ''' <summary>
+    ''' Camera Zoomer Configuration Parameter
+    ''' </summary>
     Private Structure Parameter
+        ''' <summary>Configuration Parameter Main Section</summary>
         Public Const mainSection As String = "[camera]"
+        ''' <summary>Configuration Parameter Camera Zoom</summary>
         Public Const cameraZoom As String = "zoom"
+        ''' <summary>Configuration Parameter Add Stadium Roof</summary>
         Public Const stadiumRoof As String = "add_stadium_roof"
+        ''' <summary>Configuration Parameter Fix Stadium Clipping</summary>
         Public Const stadiumClipping As String = "fix_stadium_clipping"
     End Structure
+#End Region
 
-    
-    Public Sub New()
-        DefaultValue()
-    End Sub
+#Region "Variables"
+    ''' <summary>Camera Zoom Value</summary>
+    Private _cameraZoom As Integer
+    ''' <summary>Add Stadium Roof (Enable)</summary>
+    Private _stadiumRoof As Boolean
+    ''' <summary>Fix Stadium Clipping (Enable)</summary>
+    Private _stadiumClipping As Boolean
+#End Region
 
-#Region "Info Parameter Property"
-
+#Region "Properties"
+    ''' <summary>
+    ''' Camera Zoomer Configuration File Name
+    ''' </summary>
+    ''' <value>String</value>
+    ''' <returns>camerazoomer.cfg</returns>
     Public Overloads ReadOnly Property FileName As String
         Get
             Return Info.fileName & MyBase.FileName
         End Get
     End Property
-
+    ''' <summary>
+    ''' Camera Zoomer Configuration Title Name
+    ''' </summary>
+    ''' <value>String</value>
+    ''' <returns>Camera Zoomer configuration file</returns>
     Public Overloads ReadOnly Property TitleName As String
         Get
             Return Info.titleName & MyBase.TitleName
         End Get
     End Property
 
-#End Region
-
-#Region "Main Parameter Property"
+    ''' <summary>
+    ''' Camera Zoomer Configuration Zoom Value
+    ''' </summary>
+    ''' <value>Integer</value>
+    ''' <returns>_cameraZoom</returns>
     Public Property CameraZoom As Integer
         Get
             Return _cameraZoom
@@ -60,7 +91,11 @@ Public NotInheritable Class CameraZoomer
             End If
         End Set
     End Property
-
+    ''' <summary>
+    ''' Camera Zoomer Configuration Add Stadium Roof (Enable)
+    ''' </summary>
+    ''' <value>Boolean</value>
+    ''' <returns>_stadiumRoof</returns>
     Public Property StadiumRoof As Boolean
         Get
             Return _stadiumRoof
@@ -69,7 +104,11 @@ Public NotInheritable Class CameraZoomer
             _stadiumRoof = value
         End Set
     End Property
-
+    ''' <summary>
+    ''' Camera Zoomer Configuration Fix Stadium Clipping (Enable)
+    ''' </summary>
+    ''' <value>Boolean</value>
+    ''' <returns>_stadiumClipping</returns>
     Public Property StadiumClipping As Boolean
         Get
             Return _stadiumClipping
@@ -80,14 +119,30 @@ Public NotInheritable Class CameraZoomer
     End Property
 #End Region
 
+#Region "Constructors"
+    ''' <summary>
+    ''' Default Main Constructor
+    ''' </summary>
+    ''' <remarks>Setting initial values for private variables</remarks>
+    Public Sub New()
+        DefaultValue()
+    End Sub
+#End Region
 
 #Region "Methods"
+    ''' <summary>
+    ''' Setting the initial configuration values
+    ''' </summary>
     Private Sub DefaultValue()
         _cameraZoom = 1200
         _stadiumRoof = False
         _stadiumClipping = True
     End Sub
 
+    ''' <summary>
+    ''' Generated content with the current configuration parameter values
+    ''' </summary>
+    ''' <returns>String</returns>
     Private Function GenerateData() As String
         Dim dataText As String
         Dim equally As String = " = "
@@ -100,6 +155,11 @@ Public NotInheritable Class CameraZoomer
         Return dataText
     End Function
 
+    ''' <summary>
+    ''' The function shows the error message to read
+    ''' </summary>
+    ''' <returns>Boolean</returns>
+    ''' <remarks>The function returns true if the parameter is corrected</remarks>
     Private Function ReadError() As Boolean
         Dim tmpText As String
         Dim msgResult As DialogResult
@@ -118,6 +178,11 @@ Public NotInheritable Class CameraZoomer
         Return False
     End Function
 
+    ''' <summary>
+    ''' The function checks the existence of a configuration file
+    ''' </summary>
+    ''' <returns>Boolean</returns>
+    ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function ExistFile() As Boolean
 
         If MyBase.ExistFile(FileName, TitleName, GenerateData()) Then
@@ -128,6 +193,11 @@ Public NotInheritable Class CameraZoomer
 
     End Function
 
+    ''' <summary>
+    ''' The function deletes a configuration file
+    ''' </summary>
+    ''' <returns>Boolean</returns>
+    ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function DeleteFile() As Boolean
 
         If MyBase.DeleteFile(FileName, TitleName) Then
@@ -138,6 +208,11 @@ Public NotInheritable Class CameraZoomer
 
     End Function
 
+    ''' <summary>
+    ''' The function creates a new configuration file
+    ''' </summary>
+    ''' <returns>Boolean</returns>
+    ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function CreateFile() As Boolean
 
         If MyBase.CreateFile(FileName, TitleName, GenerateData()) Then
@@ -148,6 +223,11 @@ Public NotInheritable Class CameraZoomer
 
     End Function
 
+    ''' <summary>
+    ''' The function writes values in the configuration file
+    ''' </summary>
+    ''' <returns>Boolean</returns>
+    ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function WriteFile() As Boolean
 
         If MyBase.WriteFile(FileName, TitleName, GenerateData()) Then
@@ -164,6 +244,11 @@ Public NotInheritable Class CameraZoomer
 
     End Function
 
+    ''' <summary>
+    ''' The function reads the values from the configuration file
+    ''' </summary>
+    ''' <returns>Boolean</returns>
+    ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function ReadFile() As Boolean
         Dim readValue As String
 
