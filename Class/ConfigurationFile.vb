@@ -6,7 +6,13 @@ Public MustInherit Class ConfigurationFile
     ''' Basic information about the file.
     ''' </summary>
     Private Structure Info
+        ''' <summary>
+        ''' File Name = '.cfg'
+        ''' </summary>
         Public Const fileName As String = ".cfg"
+        ''' <summary>
+        ''' Title Name = ' configuration file'
+        ''' </summary>
         Public Const titleName As String = " configuration file"
     End Structure
 

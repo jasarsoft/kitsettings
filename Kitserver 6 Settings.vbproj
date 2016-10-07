@@ -61,6 +61,7 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Afs2fs.vb" />
     <Compile Include="Class\BallServer.vb" />
     <Compile Include="Class\CameraZoomer.vb" />
     <Compile Include="Class\Application.vb" />
@@ -74,6 +75,7 @@
     </Compile>
     <Compile Include="Class\MessageText.vb" />
     <Compile Include="Class\MessageTitle.vb" />
+    <Compile Include="Class\HdKits.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -113,7 +115,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Interface\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
