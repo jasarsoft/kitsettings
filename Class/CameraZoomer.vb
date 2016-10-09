@@ -252,40 +252,28 @@ Public NotInheritable Class CameraZoomer
     Public Overloads Function ReadFile() As Boolean
         Dim readValue As String
 
-        readValue = ReadFile(FileName, Parameter.cameraZoom)
+        readValue = MyBase.ReadFile(FileName, Parameter.cameraZoom)
 
         If IsNumeric(readValue) Then
-            _cameraZoom = Convert.ToInt32(readValue)
+            _cameraZoom = CType(readValue, Integer)
         Else
-            If ReadError() Then
-                Return True
-            Else
-                Return False
-            End If
+            Return ReadError()
         End If
 
-        readValue = ReadFile(FileName, Parameter.stadiumRoof)
+        readValue = MyBase.ReadFile(FileName, Parameter.stadiumRoof)
 
         If IsNumeric(readValue) Then
-            _stadiumRoof = ConvertValue(readValue)
+            _stadiumRoof = MyBase.ConvertValue(readValue)
         Else
-            If ReadError() Then
-                Return True
-            Else
-                Return False
-            End If
+            Return ReadError()
         End If
 
-        readValue = ReadFile(FileName, Parameter.stadiumClipping)
+        readValue = MyBase.ReadFile(FileName, Parameter.stadiumClipping)
 
         If IsNumeric(readValue) Then
-            _stadiumClipping = ConvertValue(readValue)
+            _stadiumClipping = MyBase.ConvertValue(readValue)
         Else
-            If ReadError() Then
-                Return True
-            Else
-                Return False
-            End If
+            Return ReadError()
         End If
 
         Return True

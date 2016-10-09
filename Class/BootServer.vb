@@ -212,10 +212,10 @@ Public NotInheritable Class BootServer
     Public Overloads Function ReadFile() As Boolean
         Dim readValue As String
 
-        readValue = ReadFile(FileName, Parameter.randomBoots)
+        readValue = MyBase.ReadFile(FileName, Parameter.randomBoots)
 
         If IsNumeric(readValue) Then
-            _randomBoots = ConvertValue(readValue)
+            _randomBoots = MyBase.ConvertValue(readValue)
         Else
             If ReadError() Then
                 Return True
@@ -224,16 +224,12 @@ Public NotInheritable Class BootServer
             End If
         End If
 
-        readValue = ReadFile(FileName, Parameter.versionBoots)
+        readValue = MyBase.ReadFile(FileName, Parameter.versionBoots)
 
         If IsNumeric(readValue) Then
-            _versionBoots = ConvertValue(readValue)
+            _versionBoots = MyBase.ConvertValue(readValue)
         Else
-            If ReadError() Then
-                Return True
-            Else
-                Return False
-            End If
+            Return ReadError()
         End If
 
         Return True

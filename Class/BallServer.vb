@@ -195,10 +195,10 @@ Public NotInheritable Class BallServer
     Public Overloads Function ReadFile() As Boolean
         Dim readValue As String
 
-        readValue = ReadFile(FileName, Parameter.ballPreview)
+        readValue = MyBase.ReadFile(FileName, Parameter.ballPreview)
 
         If IsNumeric(readValue) Then
-            _ballPreview = ConvertValue(readValue)
+            _ballPreview = MyBase.ConvertValue(readValue)
         Else
             Return ReadError()
         End If
