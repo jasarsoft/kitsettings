@@ -199,11 +199,11 @@ Public NotInheritable Class BallServer
 
         If IsNumeric(readValue) Then
             _ballPreview = ConvertValue(readValue)
-            Return True
         Else
             Return ReadError()
         End If
 
+        Return True
     End Function
 #End Region
 
