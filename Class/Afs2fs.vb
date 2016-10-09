@@ -1,23 +1,23 @@
 ﻿
 ''' <summary>
-''' Kitserver 6 Settings Afs2fs Configuration File
+''' Kitserver 6 Settings Afs2fs Module Configuration File
 ''' </summary>
 Public NotInheritable Class Afs2fs
     Inherits ConfigurationFile
 
 #Region "Constants"
     ''' <summary>
-    ''' Afs2fs Main Information
+    ''' Afs2fs Module Main Information
     ''' </summary>
     Private Structure Info
-        ''' <summary>Afs2fs Configuration File Name</summary>
+        ''' <summary>Afs2fs Module Configuration File Name</summary>
         Public Const fileName As String = "afs2fs"
-        ''' <summary>Afs2fs Configuration Title Name</summary>
-        Public Const titleName As String = "Afs2fs"
+        ''' <summary>Afs2fs Module Configuration Title Name</summary>
+        Public Const titleName As String = "Afs2fs Module"
     End Structure
 
     ''' <summary>
-    ''' Afs2fs Configuration Paramter
+    ''' Afs2fs Module Configuration Paramter
     ''' </summary>
     Private Structure Parameter
         ''' <summary>Configuration Parameter Write Debug Log</summary>
@@ -40,7 +40,7 @@ Public NotInheritable Class Afs2fs
 
 #Region "Properties"
     ''' <summary>
-    ''' Afs2fs Configuration File Name
+    ''' Afs2fs Module Configuration File Name
     ''' </summary>
     ''' <value>String</value>
     ''' <returns>afs2fs.cfg</returns>
@@ -51,10 +51,10 @@ Public NotInheritable Class Afs2fs
     End Property
 
     ''' <summary>
-    ''' Afs2fs Configuration Title Name
+    ''' Afs2fs Module Configuration Title Name
     ''' </summary>
     ''' <value>String</value>
-    ''' <returns>Afs2fs configuration file</returns>
+    ''' <returns>Afs2fs Module configuration file</returns>
     Public Overloads ReadOnly Property TitleName As String
         Get
             Return Info.titleName & MyBase.TitleName
@@ -63,7 +63,7 @@ Public NotInheritable Class Afs2fs
 
 
     ''' <summary>
-    ''' Afs2fs Configuration Write Debug Log Enable
+    ''' Afs2fs Module Configuration Write Debug Log Enable
     ''' </summary>
     ''' <value>Boolean</value>
     ''' <returns>_debugLog</returns>
@@ -77,7 +77,7 @@ Public NotInheritable Class Afs2fs
     End Property
 
     ''' <summary>
-    ''' Afs2fs Configuration AFS Root Directory Name
+    ''' Afs2fs Module Configuration AFS Root Directory Name
     ''' </summary>
     ''' <value>String</value>
     ''' <returns>_rootFolder</returns>
@@ -91,7 +91,7 @@ Public NotInheritable Class Afs2fs
     End Property
 
     ''' <summary>
-    ''' Afs2fs Configuration File Name Lenght Value
+    ''' Afs2fs Module Configuration File Name Lenght Value
     ''' </summary>
     ''' <value>Unsigned Integer</value>
     ''' <returns>_lenghtName</returns>
@@ -237,19 +237,19 @@ Public NotInheritable Class Afs2fs
     Public Overloads Function ReadFile() As Boolean
         Dim readValue As String
 
-        readValue = ReadFile(FileName, Parameter.debugLog)
+        readValue = MyBase.ReadFile(FileName, Parameter.debugLog)
         If IsNumeric(readValue) Then
-            _debugLog = ConvertValue(readValue)
+            _debugLog = MyBase.ConvertValue(readValue)
         Else
             Return ReadError()
         End If
 
-        readValue = ReadFile(FileName, Parameter.rootFolder)
+        readValue = MyBase.ReadFile(FileName, Parameter.rootFolder)
         If readValue = Nothing Then
             Return ReadError()
         End If
 
-        readValue = ReadFile(FileName, Parameter.lenghtName)
+        readValue = MyBase.ReadFile(FileName, Parameter.lenghtName)
         If IsNumeric(readValue) Then
             _lenghtName = readValue
         Else
