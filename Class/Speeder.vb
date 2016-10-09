@@ -33,7 +33,7 @@ Public NotInheritable Class Speeder
     ''' Speeder Module Configuration File Name
     ''' </summary>
     ''' <value>String</value>
-    ''' <returns>bootserv.cfg</returns>
+    ''' <returns>speeder.cfg</returns>
     Public Overloads ReadOnly Property FileName As String
         Get
             Return Info.fileName & MyBase.FileName
