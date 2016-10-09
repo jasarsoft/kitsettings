@@ -57,7 +57,7 @@ Public NotInheritable Class KitServer
     ''' Kit Server Configuration File Name
     ''' </summary>
     ''' <value>String</value>
-    ''' <returns>bootserv.cfg</returns>
+    ''' <returns>kserv.cfg</returns>
     Public Overloads ReadOnly Property FileName As String
         Get
             Return Info.fileName & MyBase.FileName
