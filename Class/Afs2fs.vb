@@ -21,7 +21,7 @@ Public NotInheritable Class Afs2fs
     ''' </summary>
     Private Structure Parameter
         ''' <summary>Configuration Parameter Write Debug Log</summary>
-        Public Const debugLog As String = "debug"
+        Public Const debugMode As String = "debug"
         ''' <summary>Configuration Parameter AFS Root Directory</summary>
         Public Const rootFolder As String = "afs.root"
         ''' <summary>Configuration Prameter File Name Lenght</summary>
@@ -30,8 +30,8 @@ Public NotInheritable Class Afs2fs
 #End Region
 
 #Region "Variables"
-    ''' <summary>Write Debug Log Enable</summary>
-    Private _debugLog As Boolean
+    ''' <summary>Write Debug Log (Mode Enable)</summary>
+    Private _debugMode As Boolean
     ''' <summary>AFS Root Directory Name</summary>
     Private _rootFolder As String
     ''' <summary>File Name Lenght Value</summary>
@@ -63,16 +63,16 @@ Public NotInheritable Class Afs2fs
 
 
     ''' <summary>
-    ''' Afs2fs Module Configuration Write Debug Log Enable
+    ''' Afs2fs Module Configuration Write Debug Log (Mode Enable)
     ''' </summary>
     ''' <value>Boolean</value>
     ''' <returns>_debugLog</returns>
-    Public Property DebugLog As Boolean
+    Public Property DebugMode As Boolean
         Get
             Return _debugLog
         End Get
         Set(value As Boolean)
-            _debugLog = value
+            _debugMode = value
         End Set
     End Property
 
@@ -120,7 +120,7 @@ Public NotInheritable Class Afs2fs
     ''' Setting the initial configuration values
     ''' </summary>
     Private Sub DefaultValue()
-        _debugLog = False
+        _debugMode = False
         _rootFolder = "dat"
         _lenghtName = 64
     End Sub
@@ -133,7 +133,7 @@ Public NotInheritable Class Afs2fs
         Dim dataText As String
         Dim equally As String = " = "
 
-        dataText = Parameter.debugLog & equally & MyBase.ConvertEnable(_debugLog) & Environment.NewLine
+        dataText = Parameter.debugMode & equally & MyBase.ConvertEnable(_debugMode) & Environment.NewLine
         dataText += Parameter.rootFolder & equally & _rootFolder & Environment.NewLine
         dataText += Parameter.lenghtName & equally & _lenghtName.ToString()
 
@@ -237,9 +237,9 @@ Public NotInheritable Class Afs2fs
     Public Overloads Function ReadFile() As Boolean
         Dim readValue As String
 
-        readValue = MyBase.ReadFile(FileName, Parameter.debugLog)
+        readValue = MyBase.ReadFile(FileName, Parameter.debugMode)
         If IsNumeric(readValue) Then
-            _debugLog = MyBase.ConvertValue(readValue)
+            _debugMode = MyBase.ConvertValue(readValue)
         Else
             Return ReadError()
         End If
