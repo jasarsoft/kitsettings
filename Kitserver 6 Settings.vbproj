@@ -67,6 +67,8 @@
     <Compile Include="Class\CameraZoomer.vb" />
     <Compile Include="Class\Application.vb" />
     <Compile Include="Class\ConfigurationFile.vb" />
+    <Compile Include="Class\KitserverDll.vb" />
+    <Compile Include="Module\Combo.vb" />
     <Compile Include="Form\formMain.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +79,7 @@
     <Compile Include="Class\MessageText.vb" />
     <Compile Include="Class\MessageTitle.vb" />
     <Compile Include="Class\KitServer.vb" />
+    <Compile Include="Class\KitLoader.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
