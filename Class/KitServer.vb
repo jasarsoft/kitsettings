@@ -264,20 +264,6 @@ Public NotInheritable Class KitServer
             Return ReadError()
         End If
 
-        readValue = MyBase.ReadFile(FileName, Parameter.debug)
-        If IsNumeric(readValue) Then
-            _debugEnable = MyBase.ConvertValue(readValue)
-        Else
-            Return ReadError()
-        End If
-
-        readValue = MyBase.ReadFile(FileName, Parameter.showKitInfo)
-        If IsNumeric(readValue) Then
-            _showKitInfo = MyBase.ConvertValue(readValue)
-        Else
-            Return ReadError()
-        End If
-
         Return True
     End Function
 #End Region
