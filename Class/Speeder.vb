@@ -90,8 +90,9 @@ Public NotInheritable Class Speeder
     Private Function GenerateData() As String
         Dim dataText As String
         Dim equally As String = " = "
+        Dim speedValue As String = _countFactor.ToString().Replace(",", ".")
 
-        dataText = Parameter.countFactor & equally & _countFactor.ToString()
+        dataText = Parameter.countFactor & equally & speedValue
 
         Return dataText
     End Function
@@ -195,8 +196,8 @@ Public NotInheritable Class Speeder
 
         readValue = MyBase.ReadFile(FileName, Parameter.countFactor)
 
-        If IsNumeric(readValue) Then
-            _countFactor = CType(readValue, Double)
+        If IsNumeric(readValue) And readValue.Contains(".") Then
+            _countFactor = CType(readValue.Replace(".", ","), Double)
         Else
             Return ReadError()
         End If
