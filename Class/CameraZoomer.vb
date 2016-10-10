@@ -255,7 +255,7 @@ Public NotInheritable Class CameraZoomer
         readValue = MyBase.ReadFile(FileName, Parameter.cameraZoom)
 
         If IsNumeric(readValue) Then
-            _cameraZoom = CType(readValue, Integer)
+            CameraZoom = CType(readValue, Integer)
         Else
             Return ReadError()
         End If
@@ -263,7 +263,7 @@ Public NotInheritable Class CameraZoomer
         readValue = MyBase.ReadFile(FileName, Parameter.stadiumRoof)
 
         If IsNumeric(readValue) Then
-            _stadiumRoof = MyBase.ConvertValue(readValue)
+            StadiumRoof = MyBase.ConvertValue(readValue)
         Else
             Return ReadError()
         End If
@@ -271,7 +271,7 @@ Public NotInheritable Class CameraZoomer
         readValue = MyBase.ReadFile(FileName, Parameter.stadiumClipping)
 
         If IsNumeric(readValue) Then
-            _stadiumClipping = MyBase.ConvertValue(readValue)
+            StadiumClipping = MyBase.ConvertValue(readValue)
         Else
             Return ReadError()
         End If
