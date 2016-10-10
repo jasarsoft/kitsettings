@@ -71,6 +71,7 @@ Partial Class formMain
         '
         'MenuMain
         '
+        Me.MenuMain.Enabled = False
         Me.MenuMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuItemFile, Me.menuItemEdit, Me.menuItemKitserver, Me.menuItemSettings, Me.menuItemHelp})
         Me.MenuMain.Location = New System.Drawing.Point(0, 0)
         Me.MenuMain.Name = "MenuMain"
