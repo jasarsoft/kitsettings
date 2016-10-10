@@ -67,7 +67,6 @@
     <Compile Include="Class\CameraZoomer.vb" />
     <Compile Include="Class\Application.vb" />
     <Compile Include="Class\ConfigurationFile.vb" />
-    <Compile Include="Class\KitserverDll.vb" />
     <Compile Include="Module\Combo.vb" />
     <Compile Include="Form\formMain.vb">
       <SubType>Form</SubType>
@@ -120,9 +119,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
