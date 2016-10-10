@@ -66,10 +66,10 @@ Public NotInheritable Class Afs2fs
     ''' Afs2fs Module Configuration Write Debug Log (Mode Enable)
     ''' </summary>
     ''' <value>Boolean</value>
-    ''' <returns>_debugLog</returns>
+    ''' <returns>_debugMode</returns>
     Public Property DebugMode As Boolean
         Get
-            Return _debugLog
+            Return _debugMode
         End Get
         Set(value As Boolean)
             _debugMode = value
@@ -134,7 +134,7 @@ Public NotInheritable Class Afs2fs
         Dim equally As String = " = "
 
         dataText = Parameter.debugMode & equally & MyBase.ConvertEnable(_debugMode) & Environment.NewLine
-        dataText += Parameter.rootFolder & equally & _rootFolder & Environment.NewLine
+        dataText += Parameter.rootFolder & equally & ControlChars.Quote & _rootFolder & ControlChars.Quote & Environment.NewLine
         dataText += Parameter.lenghtName & equally & _lenghtName.ToString()
 
         Return dataText
