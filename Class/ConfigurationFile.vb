@@ -174,7 +174,7 @@ Public MustInherit Class ConfigurationFile
     ''' <param name="keyValue"></param>
     ''' <returns>Boolean: True - Successfull read; False - Don't read;</returns>
     ''' <remarks>The function reads the value of a clean key.</remarks>
-    Protected Overridable Function ReadFile(ByVal fileName As String, ByVal keyValue As String) As String
+    Protected Overridable Function ReadFile(ByVal fileName As String, ByVal keyValue As String, Optional ByVal enableReplace As Boolean = True) As String
         Dim line As String
 
         Try
@@ -183,7 +183,10 @@ Public MustInherit Class ConfigurationFile
                     line = sr.ReadLine
                     If line.Contains(keyValue) Then
                         If line.StartsWith(keyValue) Then
-                            line = line.Replace(keyValue, "").Replace("=", "").Replace(" ", "")
+                            If enableReplace Then
+                                line = line.Replace(keyValue, "").Replace("=", "").Replace(" ", "")
+                            End If
+
                             Return line
                         End If
                     End If
