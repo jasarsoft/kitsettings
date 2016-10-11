@@ -209,6 +209,10 @@ Public NotInheritable Class KitLoader
         'Settings parameters for 3D Analyzer
         Analyzer3D = False
         'Fullscreen Resolution on Full HD (FHD) 1080p
+        Call DefaultResolution()
+    End Sub
+
+    Private Sub DefaultResolution()
         _fullscreenWidth = 1920
         _fullscreenHeight = 1080
     End Sub
@@ -399,6 +403,7 @@ Public NotInheritable Class KitLoader
         readValue = MyBase.ReadFile(FileName, Parameter.fullscreenWidth)
         If IsNumeric(readValue) Then
             _fullscreenWidth = CType(readValue, UInteger)
+            _renderDirectX = True
         ElseIf readValue Is Nothing Then
             _renderDirectX = False
         Else
@@ -408,7 +413,9 @@ Public NotInheritable Class KitLoader
         readValue = MyBase.ReadFile(FileName, Parameter.fullscreenHeight)
         If IsNumeric(readValue) Then
             _fullscreenHeight = CType(readValue, UInteger)
-        ElseIf Not readValue Is Nothing Then
+        ElseIf readValue Is Nothing Then
+            _renderDirectX = False
+            Call DefaultResolution()
             Return ReadError()
         End If
 

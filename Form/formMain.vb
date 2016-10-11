@@ -62,8 +62,11 @@
         kitLoader.RenderDirectX = Combo.GetBoolValue(Me.comboRenderDirectX)
 
         'Resolution
-        kitLoader.FullscreenWidth = resolution.Width.Item(Me.comboFullscreenResolution.SelectedIndex)
-        kitLoader.FullscreenHeight = resolution.Height.Item(Me.comboFullscreenResolution.SelectedIndex)
+        If kitLoader.RenderDirectX Then
+            kitLoader.FullscreenWidth = resolution.Width.Item(Me.comboFullscreenResolution.SelectedIndex)
+            kitLoader.FullscreenHeight = resolution.Height.Item(Me.comboFullscreenResolution.SelectedIndex)
+        End If
+
     End Sub
 
     Private Sub SaveSettings()
@@ -122,6 +125,7 @@
         If kitLoader.ExistFile() And kitLoader.ReadFile() Then
             Me.numericReservedMemory.Value = CType(kitLoader.ReservedMemory / (1024 * 1024), Decimal)
             Combo.SetBoolValue(Me.combo3DAnalyzer, kitLoader.Analyzer3D)
+            Combo.SetBoolValue(Me.comboRenderDirectX, kitLoader.RenderDirectX)
         End If
 
     End Sub
@@ -131,6 +135,7 @@
             Me.comboFullscreenResolution.Enabled = False
         Else
             Me.comboFullscreenResolution.Enabled = True
+            Me.comboFullscreenResolution.SelectedIndex = 0
         End If
     End Sub
 
