@@ -22,6 +22,7 @@ Partial Class formMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.MenuMain = New System.Windows.Forms.MenuStrip()
         Me.menuItemFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuFileItemPlay = New System.Windows.Forms.ToolStripMenuItem()
@@ -63,6 +64,11 @@ Partial Class formMain
         Me.buttonPlay = New System.Windows.Forms.Button()
         Me.buttonSave = New System.Windows.Forms.Button()
         Me.buttonDefault = New System.Windows.Forms.Button()
+        Me.toolTipMain = New System.Windows.Forms.ToolTip(Me.components)
+        Me.menuHelpItemPES6Readme = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuHelpItemKitserver = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuHelpSpearator = New System.Windows.Forms.ToolStripSeparator()
+        Me.menuHelpItemAbout = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuMain.SuspendLayout()
         CType(Me.numericCameraZoom, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.numericSpeedModule, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,7 +77,6 @@ Partial Class formMain
         '
         'MenuMain
         '
-        Me.MenuMain.Enabled = False
         Me.MenuMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuItemFile, Me.menuItemEdit, Me.menuItemKitserver, Me.menuItemSettings, Me.menuItemHelp})
         Me.MenuMain.Location = New System.Drawing.Point(0, 0)
         Me.MenuMain.Name = "MenuMain"
@@ -144,6 +149,7 @@ Partial Class formMain
         '
         'menuItemHelp
         '
+        Me.menuItemHelp.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuHelpItemKitserver, Me.menuHelpItemPES6Readme, Me.menuHelpSpearator, Me.menuHelpItemAbout})
         Me.menuItemHelp.Name = "menuItemHelp"
         Me.menuItemHelp.Size = New System.Drawing.Size(44, 20)
         Me.menuItemHelp.Text = "&Help"
@@ -166,6 +172,8 @@ Partial Class formMain
         Me.comboHDKits.Name = "comboHDKits"
         Me.comboHDKits.Size = New System.Drawing.Size(80, 21)
         Me.comboHDKits.TabIndex = 15
+        Me.toolTipMain.SetToolTip(Me.comboHDKits, "Enable/Disable the display equipment of " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "players in high resolution (recomended)" & _
+        ".")
         '
         'numericCameraZoom
         '
@@ -177,6 +185,8 @@ Partial Class formMain
         Me.numericCameraZoom.Name = "numericCameraZoom"
         Me.numericCameraZoom.Size = New System.Drawing.Size(80, 20)
         Me.numericCameraZoom.TabIndex = 21
+        Me.toolTipMain.SetToolTip(Me.numericCameraZoom, "The value of the distance of the camera." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "The smaller value represents a larger d" & _
+        "istance view.")
         Me.numericCameraZoom.Value = New Decimal(New Integer() {800, 0, 0, 0})
         '
         'labelBallPreview
@@ -197,6 +207,8 @@ Partial Class formMain
         Me.comboBallPreview.Name = "comboBallPreview"
         Me.comboBallPreview.Size = New System.Drawing.Size(80, 21)
         Me.comboBallPreview.TabIndex = 16
+        Me.toolTipMain.SetToolTip(Me.comboBallPreview, "Enable/Disable displaying the ball before" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "the game, when selecting (recomended)." & _
+        "")
         '
         'comboLowBoots
         '
@@ -207,6 +219,8 @@ Partial Class formMain
         Me.comboLowBoots.Name = "comboLowBoots"
         Me.comboLowBoots.Size = New System.Drawing.Size(80, 21)
         Me.comboLowBoots.TabIndex = 17
+        Me.toolTipMain.SetToolTip(Me.comboLowBoots, "Turn on if you computer configuration is low." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Used simpler algorithm for display" & _
+        "ing the boot.")
         '
         'comboRandomBoots
         '
@@ -217,6 +231,7 @@ Partial Class formMain
         Me.comboRandomBoots.Name = "comboRandomBoots"
         Me.comboRandomBoots.Size = New System.Drawing.Size(80, 21)
         Me.comboRandomBoots.TabIndex = 18
+        Me.toolTipMain.SetToolTip(Me.comboRandomBoots, "Allow random choice boots " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "players which are not defined.")
         '
         'comboStadiumRoof
         '
@@ -227,6 +242,8 @@ Partial Class formMain
         Me.comboStadiumRoof.Name = "comboStadiumRoof"
         Me.comboStadiumRoof.Size = New System.Drawing.Size(80, 21)
         Me.comboStadiumRoof.TabIndex = 19
+        Me.toolTipMain.SetToolTip(Me.comboStadiumRoof, "Enable/Disable display of the roof of the stadium." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Not recommended at low values" & _
+        " for the camera zoom.")
         '
         'comboStadiumClipping
         '
@@ -237,6 +254,8 @@ Partial Class formMain
         Me.comboStadiumClipping.Name = "comboStadiumClipping"
         Me.comboStadiumClipping.Size = New System.Drawing.Size(80, 21)
         Me.comboStadiumClipping.TabIndex = 20
+        Me.toolTipMain.SetToolTip(Me.comboStadiumClipping, "Include/Exclude cutting of the stadium for the camera." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "This option is recommende" & _
+        "d for any value of the camera.")
         '
         'labelLowBoots
         '
@@ -302,6 +321,8 @@ Partial Class formMain
         Me.numericSpeedModule.Name = "numericSpeedModule"
         Me.numericSpeedModule.Size = New System.Drawing.Size(80, 20)
         Me.numericSpeedModule.TabIndex = 22
+        Me.toolTipMain.SetToolTip(Me.numericSpeedModule, "The value of speed movement of players." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "The higher value is the faster movement " & _
+        "of players.")
         Me.numericSpeedModule.Value = New Decimal(New Integer() {7, 0, 0, 65536})
         '
         'numericReservedMemory
@@ -314,6 +335,7 @@ Partial Class formMain
         Me.numericReservedMemory.Name = "numericReservedMemory"
         Me.numericReservedMemory.Size = New System.Drawing.Size(80, 20)
         Me.numericReservedMemory.TabIndex = 23
+        Me.toolTipMain.SetToolTip(Me.numericReservedMemory, "The value of RAM memory reserved for kitserver (MB).")
         Me.numericReservedMemory.Value = New Decimal(New Integer() {40, 0, 0, 0})
         '
         'combo3DAnalyzer
@@ -325,6 +347,8 @@ Partial Class formMain
         Me.combo3DAnalyzer.Name = "combo3DAnalyzer"
         Me.combo3DAnalyzer.Size = New System.Drawing.Size(80, 21)
         Me.combo3DAnalyzer.TabIndex = 24
+        Me.toolTipMain.SetToolTip(Me.combo3DAnalyzer, "If you have a problem with crash games turn on." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Recommended for older and incomp" & _
+        "atible graphics.")
         '
         'comboRenderDirectX
         '
@@ -335,6 +359,8 @@ Partial Class formMain
         Me.comboRenderDirectX.Name = "comboRenderDirectX"
         Me.comboRenderDirectX.Size = New System.Drawing.Size(80, 21)
         Me.comboRenderDirectX.TabIndex = 25
+        Me.toolTipMain.SetToolTip(Me.comboRenderDirectX, "Turn on using a resolution that is not supported " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "PES 6 Settings and then set yo" & _
+        "ur resolution for full screen.")
         '
         'comboFullscreenResolution
         '
@@ -344,6 +370,7 @@ Partial Class formMain
         Me.comboFullscreenResolution.Name = "comboFullscreenResolution"
         Me.comboFullscreenResolution.Size = New System.Drawing.Size(80, 21)
         Me.comboFullscreenResolution.TabIndex = 26
+        Me.toolTipMain.SetToolTip(Me.comboFullscreenResolution, "Select the appropriate resolution for the display game.")
         '
         'labelSpeedModule
         '
@@ -408,6 +435,7 @@ Partial Class formMain
         Me.buttonPlay.Size = New System.Drawing.Size(244, 40)
         Me.buttonPlay.TabIndex = 29
         Me.buttonPlay.Text = "PLAY  PATCH"
+        Me.toolTipMain.SetToolTip(Me.buttonPlay, "Start your game PES 6")
         Me.buttonPlay.UseVisualStyleBackColor = True
         '
         'buttonSave
@@ -418,6 +446,7 @@ Partial Class formMain
         Me.buttonSave.Size = New System.Drawing.Size(140, 40)
         Me.buttonSave.TabIndex = 27
         Me.buttonSave.Text = "SAVE SETTINGS"
+        Me.toolTipMain.SetToolTip(Me.buttonSave, "Save the current setting" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "for the configuration files")
         Me.buttonSave.UseVisualStyleBackColor = True
         '
         'buttonDefault
@@ -428,7 +457,38 @@ Partial Class formMain
         Me.buttonDefault.Size = New System.Drawing.Size(80, 40)
         Me.buttonDefault.TabIndex = 28
         Me.buttonDefault.Text = "DEFAULT"
+        Me.toolTipMain.SetToolTip(Me.buttonDefault, "Set the recommended settings" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "for kitserver configuration files")
         Me.buttonDefault.UseVisualStyleBackColor = True
+        '
+        'toolTipMain
+        '
+        Me.toolTipMain.AutoPopDelay = 5000
+        Me.toolTipMain.InitialDelay = 1000
+        Me.toolTipMain.ReshowDelay = 100
+        Me.toolTipMain.ShowAlways = True
+        '
+        'menuHelpItemPES6Readme
+        '
+        Me.menuHelpItemPES6Readme.Name = "menuHelpItemPES6Readme"
+        Me.menuHelpItemPES6Readme.Size = New System.Drawing.Size(152, 22)
+        Me.menuHelpItemPES6Readme.Text = "PES6 Readme"
+        '
+        'menuHelpItemKitserver
+        '
+        Me.menuHelpItemKitserver.Name = "menuHelpItemKitserver"
+        Me.menuHelpItemKitserver.Size = New System.Drawing.Size(152, 22)
+        Me.menuHelpItemKitserver.Text = "Kitserver"
+        '
+        'menuHelpSpearator
+        '
+        Me.menuHelpSpearator.Name = "menuHelpSpearator"
+        Me.menuHelpSpearator.Size = New System.Drawing.Size(149, 6)
+        '
+        'menuHelpItemAbout
+        '
+        Me.menuHelpItemAbout.Name = "menuHelpItemAbout"
+        Me.menuHelpItemAbout.Size = New System.Drawing.Size(152, 22)
+        Me.menuHelpItemAbout.Text = "About"
         '
         'formMain
         '
@@ -523,5 +583,10 @@ Partial Class formMain
     Friend WithEvents menuFileItemDefault As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuFileItemSeparator2 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents menuFileItemExist As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents toolTipMain As System.Windows.Forms.ToolTip
+    Friend WithEvents menuHelpItemKitserver As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuHelpItemPES6Readme As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuHelpSpearator As System.Windows.Forms.ToolStripSeparator
+    Friend WithEvents menuHelpItemAbout As System.Windows.Forms.ToolStripMenuItem
 
 End Class

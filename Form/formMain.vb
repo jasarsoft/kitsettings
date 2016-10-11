@@ -128,6 +128,13 @@
             Combo.SetBoolValue(Me.comboRenderDirectX, kitLoader.RenderDirectX)
         End If
 
+        'toolTipMain.SetToolTip(Me.buttonPlay, "Start your game PES 6")
+        'toolTipMain.SetToolTip(Me.buttonDefault, "Set the recommended settings" & Environment.NewLine & "for kitserver configuration files")
+        'toolTipMain.SetToolTip(Me.buttonSave, "Save the current setting" & Environment.NewLine & "for the configuration files")
+
+        'toolTipMain.SetToolTip(Me.comboHDKits, "Turn on the display equipment" & Environment.NewLine & "of players in high resolution (recomended)")
+        'toolTipMain.SetToolTip(Me.comboBallPreview, "Enable/Disable displaying the ball before" & Environment.NewLine & "the game, when selecting (recomended)")
+
     End Sub
 
     Private Sub comboRenderDirectX_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboRenderDirectX.SelectedIndexChanged
@@ -149,5 +156,10 @@
 
     Private Sub buttonDefault_Click(sender As Object, e As EventArgs) Handles buttonDefault.Click
         Call DefaultValue()
+    End Sub
+
+    Private Sub menuHelpItemAbout_Click(sender As Object, e As EventArgs) Handles menuHelpItemAbout.Click
+        Dim about As New formAbout()
+        about.Show()
     End Sub
 End Class
