@@ -95,6 +95,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Class\Speeder.vb" />
+    <Compile Include="Class\Resolution.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form\formMain.resx">
