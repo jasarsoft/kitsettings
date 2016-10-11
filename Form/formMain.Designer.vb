@@ -466,9 +466,12 @@ Partial Class formMain
         Me.Controls.Add(Me.labelHDKits)
         Me.Controls.Add(Me.MenuMain)
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Location = New System.Drawing.Point(256, 128)
         Me.MainMenuStrip = Me.MenuMain
         Me.MaximizeBox = False
         Me.Name = "formMain"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Kitserver 6 Settings"
         Me.MenuMain.ResumeLayout(False)
         Me.MenuMain.PerformLayout()
