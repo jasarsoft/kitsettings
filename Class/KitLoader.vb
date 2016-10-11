@@ -411,9 +411,9 @@ Public NotInheritable Class KitLoader
         End If
         'Read Resolution: Height
         readValue = MyBase.ReadFile(FileName, Parameter.fullscreenHeight)
-        If IsNumeric(readValue) Then
+        If IsNumeric(readValue) And _renderDirectX Then
             _fullscreenHeight = CType(readValue, UInteger)
-        ElseIf readValue Is Nothing Then
+        ElseIf readValue Is Nothing And _renderDirectX Then
             _renderDirectX = False
             Call DefaultResolution()
             Return ReadError()
