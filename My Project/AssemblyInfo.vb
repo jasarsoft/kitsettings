@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Kitserver 6 Settings")> 
 <Assembly: AssemblyDescription("PES6 Kitserver 6 Settings")> 
-<Assembly: AssemblyCompany("Edin Jašarević (github/jasarsoft)")> 
+<Assembly: AssemblyCompany("Edin Jašarević (jasarsoft)")> 
 <Assembly: AssemblyProduct("kitsettings")> 
 <Assembly: AssemblyCopyright("Copyright ©  2016 Edin Jašarević")> 
 <Assembly: AssemblyTrademark("Kitserver 6 Settings is trademark of Jasarsoft")> 
