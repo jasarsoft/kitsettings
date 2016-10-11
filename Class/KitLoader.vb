@@ -51,11 +51,15 @@ Public NotInheritable Class KitLoader
     ''' <summary>Reserved RAM Memory</summary>
     Private _reservedMemory As UInteger
 
+    ''' <summary>3D Analyzer Enable</summary>
+    Private _3dAnalyzer As Boolean
     ''' <summary>DirectX Force SW TnL</summary>
     Private _forceSW As Boolean
     ''' <summary>DirectX Emulate HW TnL Caps</summary>
     Private _emulateHW As Boolean
 
+    ''' <summary>Render DirectX Enable</summary>
+    Private _renderDirectX As Boolean
     ''' <summary>DirectX Fullscreen Resolution Width</summary>
     Private _fullscreenWidth As UInteger
     ''' <summary>DirectX Fullscreen Resolution Height</summary>
@@ -116,7 +120,7 @@ Public NotInheritable Class KitLoader
     ''' Kitserver Loader Configuration Reserved ROM Memory
     ''' </summary>
     ''' <value>Unsigned Integer</value>
-    ''' <returns>_lenghtName</returns>
+    ''' <returns>_reservedMemory</returns>
     Public Property ReservedMemory As UInteger
         Get
             Return _reservedMemory
@@ -130,14 +134,29 @@ Public NotInheritable Class KitLoader
     ''' Kitserver Loader Configuration 3D Analyzer Enable
     ''' </summary>
     ''' <value>Unsigned Integer</value>
-    ''' <returns>_lenghtName</returns>
+    ''' <returns>_3dAnalyzer</returns>
     Public Property Analyzer3D As Boolean
         Get
-            Return _forceSW
+            Return _3dAnalyzer
         End Get
         Set(value As Boolean)
             _forceSW = value
             _emulateHW = value
+            _3dAnalyzer = value
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Kitserver Loader Configuration Render DirectX Enable
+    ''' </summary>
+    ''' <value>Boolean</value>
+    ''' <returns>_renderDirectX</returns>
+    Public Property RenderDirectX As Boolean
+        Get
+            Return _renderDirectX
+        End Get
+        Set(value As Boolean)
+            _renderDirectX = value
         End Set
     End Property
 
@@ -188,8 +207,7 @@ Public NotInheritable Class KitLoader
         _debugMode = False
         _reservedMemory = 268435456 '256 MB
         'Settings parameters for 3D Analyzer
-        _forceSW = False
-        _emulateHW = False
+        Analyzer3D = False
         'Fullscreen Resolution on Full HD (FHD) 1080p
         _fullscreenWidth = 1920
         _fullscreenHeight = 1080
@@ -229,8 +247,14 @@ Public NotInheritable Class KitLoader
         dataText += "# DirectX Options" & Environment.NewLine
         dataText += Parameter.forceSW & equally & MyBase.ConvertEnable(_forceSW) & Environment.NewLine
         dataText += Parameter.emulateHW & equally & MyBase.ConvertEnable(_emulateHW) & Environment.NewLine
-        dataText += "# " & Parameter.fullscreenWidth & equally & _fullscreenWidth & Environment.NewLine
-        dataText += "# " & Parameter.fullscreenHeight & equally & _fullscreenHeight
+
+        If RenderDirectX Then
+            dataText += Parameter.fullscreenWidth & equally & _fullscreenWidth & Environment.NewLine
+            dataText += Parameter.fullscreenHeight & equally & _fullscreenHeight
+        Else
+            dataText += "# " & Parameter.fullscreenWidth & equally & _fullscreenWidth & Environment.NewLine
+            dataText += "# " & Parameter.fullscreenHeight & equally & _fullscreenHeight
+        End If
 
         Return dataText
     End Function
@@ -366,7 +390,25 @@ Public NotInheritable Class KitLoader
         End If
         'Check that you are equal to their parameters
         If Not _forceSW = _emulateHW Then
-            Analyzer3D = False
+            Analyzer3D = False 'Must because _forceSW and _emulateHW;
+            Return ReadError()
+        End If
+
+
+        'Read Resolution: Width
+        readValue = MyBase.ReadFile(FileName, Parameter.fullscreenWidth)
+        If IsNumeric(readValue) Then
+            _fullscreenWidth = CType(readValue, UInteger)
+        ElseIf readValue Is Nothing Then
+            _renderDirectX = False
+        Else
+            Return ReadError()
+        End If
+        'Read Resolution: Height
+        readValue = MyBase.ReadFile(FileName, Parameter.fullscreenHeight)
+        If IsNumeric(readValue) Then
+            _fullscreenHeight = CType(readValue, UInteger)
+        ElseIf Not readValue Is Nothing Then
             Return ReadError()
         End If
 
