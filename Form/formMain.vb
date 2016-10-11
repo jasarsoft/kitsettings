@@ -7,9 +7,9 @@
     Dim kitServer As KitServer
     Dim kitLoader As KitLoader
     Dim speeder As Speeder
+    Dim resolution As Resolution
 
     Private Delegate Function Save() As Boolean
-
 
 
     Public Sub New()
@@ -24,6 +24,7 @@
         kitServer = New KitServer()
         kitLoader = New KitLoader()
         speeder = New Speeder()
+        resolution = New Resolution()
     End Sub
 
     Private Sub DefaultValue()
@@ -38,6 +39,13 @@
         Me.numericReservedMemory.Value = 256I
         Me.combo3DAnalyzer.SelectedIndex = 0
         Me.comboRenderDirectX.SelectedIndex = 0
+
+        'Resolution
+        Dim i As Integer = 0
+        For Each value As Integer In resolution.Width
+            Me.comboFullscreenResolution.Items.Add(resolution.Width.Item(i).ToString() & "x" & resolution.Height.Item(i).ToString())
+            i += 1 'i = i + 1
+        Next
     End Sub
 
     Private Sub ReadSettings()
@@ -51,6 +59,11 @@
         speeder.CountFactor = CType(Me.numericSpeedModule.Value, Double)
         kitLoader.ReservedMemory = CType(Me.numericReservedMemory.Value * 1024 * 1024, UInteger)
         kitLoader.Analyzer3D = Combo.GetBoolValue(Me.combo3DAnalyzer)
+        kitLoader.RenderDirectX = Combo.GetBoolValue(Me.comboRenderDirectX)
+
+        'Resolution
+        kitLoader.FullscreenWidth = resolution.Width.Item(Me.comboFullscreenResolution.SelectedIndex)
+        kitLoader.FullscreenHeight = resolution.Height.Item(Me.comboFullscreenResolution.SelectedIndex)
     End Sub
 
     Private Sub SaveSettings()
@@ -76,11 +89,13 @@
 
     Private Sub buttonPlay_Click(sender As Object, e As EventArgs) Handles buttonPlay.Click
 
-
+        Process.Start("..\PES6.exe")
     End Sub
 
     Private Sub formMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         DefaultValue()
+
         If kitServer.ExistFile() And kitServer.ReadFile() Then
             Combo.SetBoolValue(Me.comboHDKits, kitServer.HdKitsEnable)
         End If
