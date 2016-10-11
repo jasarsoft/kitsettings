@@ -65,8 +65,14 @@
     <Compile Include="Class\Afs2fs.vb" />
     <Compile Include="Class\BallServer.vb" />
     <Compile Include="Class\CameraZoomer.vb" />
-    <Compile Include="Class\Application.vb" />
+    <Compile Include="Class\About.vb" />
     <Compile Include="Class\ConfigurationFile.vb" />
+    <Compile Include="formAbout.Designer.vb">
+      <DependentUpon>formAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Module\Combo.vb" />
     <Compile Include="Form\formMain.vb">
       <SubType>Form</SubType>
@@ -98,6 +104,9 @@
     <Compile Include="Class\Resolution.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="formAbout.resx">
+      <DependentUpon>formAbout.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\formMain.resx">
       <DependentUpon>formMain.vb</DependentUpon>
     </EmbeddedResource>
