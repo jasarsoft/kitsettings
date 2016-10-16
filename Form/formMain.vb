@@ -294,4 +294,21 @@
             Process.Start(speeder.FileName)
         End If
     End Sub
+
+    Private Sub menuFileItemPlay_Click(sender As Object, e As EventArgs) Handles menuFileItemPlay.Click
+        Dim pesFile As New PesFile()
+
+        If pesFile.Check(pesFile.AppPES6) Then
+            Process.Start(pesFile.AppPES6)
+        End If
+    End Sub
+
+    Private Sub menuFileItemSave_Click(sender As Object, e As EventArgs) Handles menuFileItemSave.Click
+        Call ReadSettings()
+        Call SaveSettings()
+    End Sub
+
+    Private Sub menuFileItemExist_Click(sender As Object, e As EventArgs) Handles menuFileItemExist.Click
+        Me.Close()
+    End Sub
 End Class
