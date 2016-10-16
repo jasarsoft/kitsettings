@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formAbout
+Partial Class FormAbout
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -184,11 +184,11 @@ Partial Class formAbout
         Me.labelLicense.Text = "License:"
         Me.labelLicense.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'formAbout
+        'FormAbout
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(404, 267)
+        Me.ClientSize = New System.Drawing.Size(396, 259)
         Me.ControlBox = False
         Me.Controls.Add(Me.labelLicenseData)
         Me.Controls.Add(Me.labelLicense)
@@ -208,10 +208,10 @@ Partial Class formAbout
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Location = New System.Drawing.Point(256, 128)
         Me.MaximizeBox = False
-        Me.Name = "formAbout"
+        Me.Name = "FormAbout"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Kitserver 6 Settings | About"
         Me.TopMost = True
         Me.ResumeLayout(False)

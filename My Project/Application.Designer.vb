@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Jasarsoft.Kitserver.Six.Settings.formMain
+            Me.MainForm = Global.Jasarsoft.KitSettings.FormMain
         End Sub
     End Class
 End Namespace

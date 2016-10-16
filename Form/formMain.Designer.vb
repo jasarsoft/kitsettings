@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class formMain
+Partial Class FormMain
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,18 +23,35 @@ Partial Class formMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.MenuMain = New System.Windows.Forms.MenuStrip()
         Me.menuItemFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuFileItemPlay = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuFileItemFolder = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuFileItemSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.menuFileItemSave = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuFileItemDefault = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuFileItemSeparator2 = New System.Windows.Forms.ToolStripSeparator()
         Me.menuFileItemExist = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuItemEdit = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuEditItemAfs2fs = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuEditItemBootServ = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuEditItemBserv = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuEditItemCameraZoomer = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuEditItemKload = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuEditItemKserv = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuEditItemSpeeder = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuItemKitserver = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuKitserverItemKeyBind = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuKitserverItemLodCfg = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuKitserverItemSetup = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuItemSettings = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuSettingsItemPES6 = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuItemHelp = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuHelpItemKitserver = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuHelpItemPES6Readme = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuHelpSpearator = New System.Windows.Forms.ToolStripSeparator()
+        Me.menuHelpItemAbout = New System.Windows.Forms.ToolStripMenuItem()
         Me.labelHDKits = New System.Windows.Forms.Label()
         Me.comboHDKits = New System.Windows.Forms.ComboBox()
         Me.numericCameraZoom = New System.Windows.Forms.NumericUpDown()
@@ -65,10 +82,6 @@ Partial Class formMain
         Me.buttonSave = New System.Windows.Forms.Button()
         Me.buttonDefault = New System.Windows.Forms.Button()
         Me.toolTipMain = New System.Windows.Forms.ToolTip(Me.components)
-        Me.menuHelpItemPES6Readme = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuHelpItemKitserver = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuHelpSpearator = New System.Windows.Forms.ToolStripSeparator()
-        Me.menuHelpItemAbout = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuMain.SuspendLayout()
         CType(Me.numericCameraZoom, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.numericSpeedModule, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,7 +99,7 @@ Partial Class formMain
         '
         'menuItemFile
         '
-        Me.menuItemFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuFileItemPlay, Me.menuFileItemSeparator1, Me.menuFileItemSave, Me.menuFileItemDefault, Me.menuFileItemSeparator2, Me.menuFileItemExist})
+        Me.menuItemFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuFileItemPlay, Me.menuFileItemFolder, Me.menuFileItemSeparator1, Me.menuFileItemSave, Me.menuFileItemDefault, Me.menuFileItemSeparator2, Me.menuFileItemExist})
         Me.menuItemFile.Name = "menuItemFile"
         Me.menuItemFile.Size = New System.Drawing.Size(37, 20)
         Me.menuItemFile.Text = "&File"
@@ -97,6 +110,13 @@ Partial Class formMain
         Me.menuFileItemPlay.ShortcutKeyDisplayString = "Ctrl+P"
         Me.menuFileItemPlay.Size = New System.Drawing.Size(154, 22)
         Me.menuFileItemPlay.Text = "&Play"
+        '
+        'menuFileItemFolder
+        '
+        Me.menuFileItemFolder.Name = "menuFileItemFolder"
+        Me.menuFileItemFolder.ShortcutKeyDisplayString = "Ctrl+F"
+        Me.menuFileItemFolder.Size = New System.Drawing.Size(154, 22)
+        Me.menuFileItemFolder.Text = "&Folder"
         '
         'menuFileItemSeparator1
         '
@@ -131,21 +151,90 @@ Partial Class formMain
         '
         'menuItemEdit
         '
+        Me.menuItemEdit.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuEditItemAfs2fs, Me.menuEditItemBootServ, Me.menuEditItemBserv, Me.menuEditItemCameraZoomer, Me.menuEditItemKload, Me.menuEditItemKserv, Me.menuEditItemSpeeder})
         Me.menuItemEdit.Name = "menuItemEdit"
         Me.menuItemEdit.Size = New System.Drawing.Size(39, 20)
         Me.menuItemEdit.Text = "&Edit"
         '
+        'menuEditItemAfs2fs
+        '
+        Me.menuEditItemAfs2fs.Name = "menuEditItemAfs2fs"
+        Me.menuEditItemAfs2fs.Size = New System.Drawing.Size(160, 22)
+        Me.menuEditItemAfs2fs.Text = "Afs2fs"
+        '
+        'menuEditItemBootServ
+        '
+        Me.menuEditItemBootServ.Name = "menuEditItemBootServ"
+        Me.menuEditItemBootServ.Size = New System.Drawing.Size(160, 22)
+        Me.menuEditItemBootServ.Text = "Boot Server"
+        '
+        'menuEditItemBserv
+        '
+        Me.menuEditItemBserv.Name = "menuEditItemBserv"
+        Me.menuEditItemBserv.Size = New System.Drawing.Size(160, 22)
+        Me.menuEditItemBserv.Text = "Ball Server"
+        '
+        'menuEditItemCameraZoomer
+        '
+        Me.menuEditItemCameraZoomer.Name = "menuEditItemCameraZoomer"
+        Me.menuEditItemCameraZoomer.Size = New System.Drawing.Size(160, 22)
+        Me.menuEditItemCameraZoomer.Text = "Camera Zoomer"
+        '
+        'menuEditItemKload
+        '
+        Me.menuEditItemKload.Name = "menuEditItemKload"
+        Me.menuEditItemKload.Size = New System.Drawing.Size(160, 22)
+        Me.menuEditItemKload.Text = "Kitserver Load"
+        '
+        'menuEditItemKserv
+        '
+        Me.menuEditItemKserv.Name = "menuEditItemKserv"
+        Me.menuEditItemKserv.Size = New System.Drawing.Size(160, 22)
+        Me.menuEditItemKserv.Text = "Kit Server"
+        '
+        'menuEditItemSpeeder
+        '
+        Me.menuEditItemSpeeder.Name = "menuEditItemSpeeder"
+        Me.menuEditItemSpeeder.Size = New System.Drawing.Size(160, 22)
+        Me.menuEditItemSpeeder.Text = "Speeder"
+        '
         'menuItemKitserver
         '
+        Me.menuItemKitserver.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuKitserverItemKeyBind, Me.menuKitserverItemLodCfg, Me.menuKitserverItemSetup})
         Me.menuItemKitserver.Name = "menuItemKitserver"
         Me.menuItemKitserver.Size = New System.Drawing.Size(64, 20)
         Me.menuItemKitserver.Text = "&Kitserver"
         '
+        'menuKitserverItemKeyBind
+        '
+        Me.menuKitserverItemKeyBind.Name = "menuKitserverItemKeyBind"
+        Me.menuKitserverItemKeyBind.Size = New System.Drawing.Size(129, 22)
+        Me.menuKitserverItemKeyBind.Text = "Key Bind"
+        '
+        'menuKitserverItemLodCfg
+        '
+        Me.menuKitserverItemLodCfg.Name = "menuKitserverItemLodCfg"
+        Me.menuKitserverItemLodCfg.Size = New System.Drawing.Size(129, 22)
+        Me.menuKitserverItemLodCfg.Text = "LOD Mixer"
+        '
+        'menuKitserverItemSetup
+        '
+        Me.menuKitserverItemSetup.Name = "menuKitserverItemSetup"
+        Me.menuKitserverItemSetup.Size = New System.Drawing.Size(129, 22)
+        Me.menuKitserverItemSetup.Text = "(Un)Install"
+        '
         'menuItemSettings
         '
+        Me.menuItemSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuSettingsItemPES6})
         Me.menuItemSettings.Name = "menuItemSettings"
         Me.menuItemSettings.Size = New System.Drawing.Size(61, 20)
         Me.menuItemSettings.Text = "&Settings"
+        '
+        'menuSettingsItemPES6
+        '
+        Me.menuSettingsItemPES6.Name = "menuSettingsItemPES6"
+        Me.menuSettingsItemPES6.Size = New System.Drawing.Size(102, 22)
+        Me.menuSettingsItemPES6.Text = "PES 6"
         '
         'menuItemHelp
         '
@@ -153,6 +242,29 @@ Partial Class formMain
         Me.menuItemHelp.Name = "menuItemHelp"
         Me.menuItemHelp.Size = New System.Drawing.Size(44, 20)
         Me.menuItemHelp.Text = "&Help"
+        '
+        'menuHelpItemKitserver
+        '
+        Me.menuHelpItemKitserver.Name = "menuHelpItemKitserver"
+        Me.menuHelpItemKitserver.Size = New System.Drawing.Size(145, 22)
+        Me.menuHelpItemKitserver.Text = "Kitserver"
+        '
+        'menuHelpItemPES6Readme
+        '
+        Me.menuHelpItemPES6Readme.Name = "menuHelpItemPES6Readme"
+        Me.menuHelpItemPES6Readme.Size = New System.Drawing.Size(145, 22)
+        Me.menuHelpItemPES6Readme.Text = "PES6 Readme"
+        '
+        'menuHelpSpearator
+        '
+        Me.menuHelpSpearator.Name = "menuHelpSpearator"
+        Me.menuHelpSpearator.Size = New System.Drawing.Size(142, 6)
+        '
+        'menuHelpItemAbout
+        '
+        Me.menuHelpItemAbout.Name = "menuHelpItemAbout"
+        Me.menuHelpItemAbout.Size = New System.Drawing.Size(145, 22)
+        Me.menuHelpItemAbout.Text = "About"
         '
         'labelHDKits
         '
@@ -467,30 +579,7 @@ Partial Class formMain
         Me.toolTipMain.ReshowDelay = 100
         Me.toolTipMain.ShowAlways = True
         '
-        'menuHelpItemPES6Readme
-        '
-        Me.menuHelpItemPES6Readme.Name = "menuHelpItemPES6Readme"
-        Me.menuHelpItemPES6Readme.Size = New System.Drawing.Size(152, 22)
-        Me.menuHelpItemPES6Readme.Text = "PES6 Readme"
-        '
-        'menuHelpItemKitserver
-        '
-        Me.menuHelpItemKitserver.Name = "menuHelpItemKitserver"
-        Me.menuHelpItemKitserver.Size = New System.Drawing.Size(152, 22)
-        Me.menuHelpItemKitserver.Text = "Kitserver"
-        '
-        'menuHelpSpearator
-        '
-        Me.menuHelpSpearator.Name = "menuHelpSpearator"
-        Me.menuHelpSpearator.Size = New System.Drawing.Size(149, 6)
-        '
-        'menuHelpItemAbout
-        '
-        Me.menuHelpItemAbout.Name = "menuHelpItemAbout"
-        Me.menuHelpItemAbout.Size = New System.Drawing.Size(152, 22)
-        Me.menuHelpItemAbout.Text = "About"
-        '
-        'formMain
+        'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -527,10 +616,12 @@ Partial Class formMain
         Me.Controls.Add(Me.MenuMain)
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.KeyPreview = True
         Me.Location = New System.Drawing.Point(256, 128)
         Me.MainMenuStrip = Me.MenuMain
         Me.MaximizeBox = False
-        Me.Name = "formMain"
+        Me.Name = "FormMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Kitserver 6 Settings"
         Me.MenuMain.ResumeLayout(False)
@@ -588,5 +679,17 @@ Partial Class formMain
     Friend WithEvents menuHelpItemPES6Readme As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuHelpSpearator As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents menuHelpItemAbout As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuFileItemFolder As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuSettingsItemPES6 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuEditItemAfs2fs As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuEditItemBootServ As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuEditItemBserv As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuEditItemCameraZoomer As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuEditItemKload As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuEditItemKserv As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuEditItemSpeeder As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuKitserverItemKeyBind As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuKitserverItemLodCfg As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuKitserverItemSetup As System.Windows.Forms.ToolStripMenuItem
 
 End Class

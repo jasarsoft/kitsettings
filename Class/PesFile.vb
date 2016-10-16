@@ -2,84 +2,127 @@
 
 Public Class PesFile
 
-    Private mainDir As String
+    Private _appFile As AppFile
+    Private _helpFile As HelpFile
+    Private _afsFile(14) As String
+
     Private pesFolder As PesFolder
 
-    Private fileName(5) As String
+
+    Private Structure AppFile
+        Public pes6 As String
+        Public settings As String
+    End Structure
+
+    Private Structure HelpFile
+        Public readme As String
+    End Structure
 
     Public ReadOnly Property AppPES6 As String
         Get
-            Return fileName(0)
+            Return _appFile.pes6
         End Get
     End Property
 
     Public ReadOnly Property AppSettings As String
         Get
-            Return fileName(1)
+            Return _appFile.settings
         End Get
     End Property
 
     Public ReadOnly Property ReadmeFile As String
         Get
-            Return fileName(2)
-        End Get
-    End Property
-
-    Public ReadOnly Property OpmovFile As String
-        Get
-            Return fileName(3)
-        End Get
-    End Property
-
-    Public ReadOnly Property AfsText As String
-        Get
-            Return fileName(4)
-        End Get
-    End Property
-
-    Public ReadOnly Property AfsSound As String
-        Get
-            Return fileName(5)
+            Return _helpFile.readme
         End Get
     End Property
 
     Public Sub New()
-        mainDir = "..\"
         pesFolder = New PesFolder()
 
-        Call GenerateFile()
+        _appFile.pes6 = pesFolder.DirPes & "\PES6.exe"
+        _appFile.settings = pesFolder.DirPes & "\settings.exe"
+
+        _helpFile.readme = pesFolder.DirPes & "\readme.htm"
+
+        Call GenerateAfs()
     End Sub
 
-    Private Sub GenerateFile()
-        'PES 6 Application Files
-        fileName(0) = mainDir & "PES6.exe"
-        fileName(1) = mainDir & "settings.exe"
-        'PES 6 Readme file
-        fileName(2) = mainDir & "readme.htm"
+    Private Sub GenerateAfs()
         'PES 6 Opmov File
-        fileName(3) = pesFolder.DirDat & "\opmov"
+        _afsFile(0) = pesFolder.DirDat & "\opmov"
         'PES 6 Main AFS Files
-        fileName(4) = pesFolder.DirDat & "\0_text.afs"
-        fileName(5) = pesFolder.DirDat & "\0_sound.afs"
+        _afsFile(1) = pesFolder.DirDat & "\0_text.afs"
+        _afsFile(2) = pesFolder.DirDat & "\0_sound.afs"
+        'PES 6 English AFS Files
+        _afsFile(3) = pesFolder.DirDat & "\e_text.afs"
+        _afsFile(4) = pesFolder.DirDat & "\e_sound.afs"
+        'PES 6 French AFS Files
+        _afsFile(5) = pesFolder.DirDat & "\f_text.afs"
+        _afsFile(6) = pesFolder.DirDat & "\f_sound.afs"
+        'PES 6 German AFS Files
+        _afsFile(7) = pesFolder.DirDat & "\g_text.afs"
+        _afsFile(8) = pesFolder.DirDat & "\g_sound.afs"
+        'PES 6 Italian AFS Files
+        _afsFile(9) = pesFolder.DirDat & "\i_text.afs"
+        _afsFile(10) = pesFolder.DirDat & "\i_sound.afs"
+        'PES 6 Polish AFS Files
+        _afsFile(11) = pesFolder.DirDat & "\p_text.afs"
+        _afsFile(12) = pesFolder.DirDat & "\p_sound.afs"
+        'PES 6 Spanish AFS Files
+        _afsFile(13) = pesFolder.DirDat & "\s_text.afs"
+        _afsFile(14) = pesFolder.DirDat & "\s_sound.afs"
     End Sub
 
-    Public Function Check() As Boolean
+    Public Function Check(ByVal fileName As String) As Boolean
 
-        For Each name As String In fileName
-            If File.Exists(name) Then
-                Dim msgText As String
-                Dim msgTitle As New MessageTitle()
+        If File.Exists(fileName) Then
+            Return True
+        Else
+            Call MessageError(fileName)
+        End If
 
-                msgText = name.Replace(mainDir, "").Replace(pesFolder.DirDat, "").Replace("\", "")
-                msgText += " file does not exist." & Environment.NewLine
-                msgText += "Your game may not work properly."
+        Return False
+    End Function
 
-                MessageBox.Show(msgText, msgTitle.TitleWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Return False
-            End If
-        Next
+
+    Public Function CheckAfs() As Boolean
+        Dim pesRegistry As New PesRegistry()
+
+        If pesRegistry.Read() Then
+            For i As Integer = 0 To 14
+                If i = 3 Or i = 4 And Not pesRegistry.LangEnglish Then
+                    Continue For
+                ElseIf i = 5 Or i = 6 And Not pesRegistry.LangFrench Then
+                    Continue For
+                ElseIf i = 7 Or i = 8 And Not pesRegistry.LangGerman Then
+                    Continue For
+                ElseIf i = 9 Or i = 10 And Not pesRegistry.LangItalian Then
+                    Continue For
+                ElseIf i = 11 Or i = 12 And Not pesRegistry.LangPolish Then
+                    Continue For
+                ElseIf i = 13 Or i = 14 And Not pesRegistry.LangSpanish Then
+                    Continue For
+                End If
+
+                If Not File.Exists(_afsFile(i)) Then
+                    Call MessageError(_afsFile(i))
+                    Return False
+                End If
+            Next
+        End If
 
         Return True
     End Function
+
+    Private Sub MessageError(ByVal fileName As String)
+        Dim msgText As String
+        Dim msgTitle As New MessageTitle()
+
+        msgText = "Warning, '" & fileName.Replace(pesFolder.DirPes, "").Replace(pesFolder.DirDat, "").Replace("\", "")
+        msgText += "' file does not exist." & Environment.NewLine
+        msgText += "Your game is not complete and may not work properly."
+
+        MessageBox.Show(msgText, msgTitle.TitleWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+    End Sub
 
 End Class

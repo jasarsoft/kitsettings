@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AE7545F7-1844-4E36-8F5C-18C2A62A2C20}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Jasarsoft.Kitserver.Six.Settings.My.MyApplication</StartupObject>
-    <RootNamespace>Jasarsoft.Kitserver.Six.Settings</RootNamespace>
+    <StartupObject>Jasarsoft.KitSettings.My.MyApplication</StartupObject>
+    <RootNamespace>Jasarsoft.KitSettings</RootNamespace>
     <AssemblyName>kitsettings</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
@@ -46,6 +46,9 @@
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon_128.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -67,18 +70,21 @@
     <Compile Include="Class\CameraZoomer.vb" />
     <Compile Include="Class\About.vb" />
     <Compile Include="Class\ConfigurationFile.vb" />
-    <Compile Include="formAbout.Designer.vb">
-      <DependentUpon>formAbout.vb</DependentUpon>
+    <Compile Include="Form\FormAbout.Designer.vb">
+      <DependentUpon>FormAbout.vb</DependentUpon>
     </Compile>
-    <Compile Include="formAbout.vb">
+    <Compile Include="Form\FormAbout.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Class\Hash.vb" />
+    <Compile Include="Class\KitserverHelp.vb" />
+    <Compile Include="Class\KitserverFile.vb" />
     <Compile Include="Module\Combo.vb" />
-    <Compile Include="Form\formMain.vb">
+    <Compile Include="Form\FormMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\formMain.Designer.vb">
-      <DependentUpon>formMain.vb</DependentUpon>
+    <Compile Include="Form\FormMain.Designer.vb">
+      <DependentUpon>FormMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Class\MessageText.vb" />
@@ -102,13 +108,16 @@
     </Compile>
     <Compile Include="Class\Speeder.vb" />
     <Compile Include="Class\Resolution.vb" />
+    <Compile Include="Class\PesFile.vb" />
+    <Compile Include="Class\PesFolder.vb" />
+    <Compile Include="Class\PesRegistry.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="formAbout.resx">
-      <DependentUpon>formAbout.vb</DependentUpon>
+    <EmbeddedResource Include="Form\FormAbout.resx">
+      <DependentUpon>FormAbout.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\formMain.resx">
-      <DependentUpon>formMain.vb</DependentUpon>
+    <EmbeddedResource Include="Form\FormMain.resx">
+      <DependentUpon>FormMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -129,7 +138,9 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="icon_128.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

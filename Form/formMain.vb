@@ -1,4 +1,4 @@
-﻿Public Class formMain
+﻿Public Class FormMain
 
     Dim afs2fs As Afs2fs
     Dim ballServer As BallServer
@@ -90,12 +90,15 @@
         End If
     End Sub
 
-    Private Sub buttonPlay_Click(sender As Object, e As EventArgs) Handles buttonPlay.Click
+    Private Sub ButtonPlay_Click(sender As Object, e As EventArgs) Handles buttonPlay.Click
+        Dim pesFile As New PesFile()
 
-        Process.Start("..\PES6.exe")
+        If pesFile.Check(pesFile.AppPES6) Then
+            Process.Start(pesFile.AppPES6)
+        End If
     End Sub
 
-    Private Sub formMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub FormMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         DefaultValue()
 
@@ -127,17 +130,9 @@
             Combo.SetBoolValue(Me.combo3DAnalyzer, kitLoader.Analyzer3D)
             Combo.SetBoolValue(Me.comboRenderDirectX, kitLoader.RenderDirectX)
         End If
-
-        'toolTipMain.SetToolTip(Me.buttonPlay, "Start your game PES 6")
-        'toolTipMain.SetToolTip(Me.buttonDefault, "Set the recommended settings" & Environment.NewLine & "for kitserver configuration files")
-        'toolTipMain.SetToolTip(Me.buttonSave, "Save the current setting" & Environment.NewLine & "for the configuration files")
-
-        'toolTipMain.SetToolTip(Me.comboHDKits, "Turn on the display equipment" & Environment.NewLine & "of players in high resolution (recomended)")
-        'toolTipMain.SetToolTip(Me.comboBallPreview, "Enable/Disable displaying the ball before" & Environment.NewLine & "the game, when selecting (recomended)")
-
     End Sub
 
-    Private Sub comboRenderDirectX_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboRenderDirectX.SelectedIndexChanged
+    Private Sub ComboRenderDirectX_SelectedIndexChanged(sender As Object, e As EventArgs) Handles comboRenderDirectX.SelectedIndexChanged
         If Me.comboRenderDirectX.SelectedIndex = 0 Then
             Me.comboFullscreenResolution.Enabled = False
         Else
@@ -147,19 +142,156 @@
     End Sub
 
 
-    Private Sub buttonSave_Click(sender As Object, e As EventArgs) Handles buttonSave.Click
+    Private Sub ButtonSave_Click(sender As Object, e As EventArgs) Handles buttonSave.Click
 
         Call ReadSettings()
         Call SaveSettings()
 
     End Sub
 
-    Private Sub buttonDefault_Click(sender As Object, e As EventArgs) Handles buttonDefault.Click
+    Private Sub ButtonDefault_Click(sender As Object, e As EventArgs) Handles buttonDefault.Click
         Call DefaultValue()
     End Sub
 
-    Private Sub menuHelpItemAbout_Click(sender As Object, e As EventArgs) Handles menuHelpItemAbout.Click
-        Dim about As New formAbout()
+    Private Sub MenuHelpItemAbout_Click(sender As Object, e As EventArgs) Handles menuHelpItemAbout.Click
+        Dim about As New FormAbout()
         about.Show()
+    End Sub
+
+    Private Sub FormMain_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+
+        If (e.KeyCode And Not Keys.Modifiers) = Keys.P AndAlso e.Modifiers = Keys.Control Then
+            Dim pesFile As New PesFile()
+
+            If pesFile.Check(pesFile.AppPES6) Then
+                Process.Start(pesFile.AppPES6)
+            End If
+        ElseIf (e.KeyCode And Not Keys.Modifiers) = Keys.D AndAlso e.Modifiers = Keys.Control Then
+            Call DefaultValue()
+        ElseIf (e.KeyCode And Not Keys.Modifiers) = Keys.S AndAlso e.Modifiers = Keys.Control Then
+            Call ReadSettings()
+            Call SaveSettings()
+        ElseIf (e.KeyCode And Not Keys.Modifiers) = Keys.X AndAlso e.Modifiers = Keys.Control Then
+            Me.Close()
+        ElseIf (e.KeyCode And Not Keys.Modifiers) = Keys.F AndAlso e.Modifiers = Keys.Control Then
+            Process.Start(Environment.CurrentDirectory)
+        End If
+
+    End Sub
+
+    Private Sub MenuHelpItemKitserver_Click(sender As Object, e As EventArgs) Handles menuHelpItemKitserver.Click
+
+        Dim msgTitle As New MessageTitle()
+        Dim help As KitserverHelp = New KitserverHelp()
+
+        If Not help.Check() Then
+            Dim msgResult As DialogResult
+
+            msgResult = MessageBox.Show(help.Message, msgTitle.TitleWarning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+            If msgResult = DialogResult.No Then
+                Exit Sub
+            End If
+        Else
+            If Not help.Valid() Then
+                MessageBox.Show(help.Message, msgTitle.TitleWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+
+            If Not help.Run() Then
+                MessageBox.Show(help.Message, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        End If
+    End Sub
+
+    Private Sub MenuFileItemDefault_Click(sender As Object, e As EventArgs) Handles menuFileItemDefault.Click
+        Call DefaultValue()
+    End Sub
+
+    Private Sub menuFileItemFolder_Click(sender As Object, e As EventArgs) Handles menuFileItemFolder.Click
+        Process.Start(Environment.CurrentDirectory)
+    End Sub
+
+    Private Sub menuHelpItemPES6Readme_Click(sender As Object, e As EventArgs) Handles menuHelpItemPES6Readme.Click
+        Dim pesFile As New PesFile()
+
+        If pesFile.Check(pesFile.ReadmeFile) Then
+            Process.Start(pesFile.ReadmeFile)
+        End If
+
+    End Sub
+
+    Private Sub menuSettingsItemPES6_Click(sender As Object, e As EventArgs) Handles menuSettingsItemPES6.Click
+        Dim pesFile As New PesFile()
+
+        If pesFile.Check(pesFile.AppSettings) Then
+            Process.Start(pesFile.AppSettings)
+        End If
+
+    End Sub
+
+    Private Sub menuKitserverItemKeyBind_Click(sender As Object, e As EventArgs) Handles menuKitserverItemKeyBind.Click
+        Dim kitserverFile As New KitserverFile
+
+        If kitserverFile.Check(kitserverFile.AppKeyBind) Then
+            Process.Start(kitserverFile.AppKeyBind)
+        End If
+
+    End Sub
+
+    Private Sub menuKitserverItemLodCfg_Click(sender As Object, e As EventArgs) Handles menuKitserverItemLodCfg.Click
+        Dim kitserverFile As New KitserverFile
+
+        If kitserverFile.Check(kitserverFile.AppLodMixer) Then
+            Process.Start(kitserverFile.AppLodMixer)
+        End If
+    End Sub
+
+    Private Sub menuKitserverItemSetup_Click(sender As Object, e As EventArgs) Handles menuKitserverItemSetup.Click
+        Dim kitserverFile As New KitserverFile
+
+        If kitserverFile.Check(kitserverFile.AppSetup) Then
+            Process.Start(kitserverFile.AppSetup)
+        End If
+    End Sub
+
+    Private Sub menuEditItemAfs2fs_Click(sender As Object, e As EventArgs) Handles menuEditItemAfs2fs.Click
+        If afs2fs.ExistFile() Then
+            Process.Start(afs2fs.FileName)
+        End If
+    End Sub
+
+    Private Sub menuEditItemBootServ_Click(sender As Object, e As EventArgs) Handles menuEditItemBootServ.Click
+        If bootServer.ExistFile() Then
+            Process.Start(bootServer.FileName)
+        End If
+    End Sub
+
+    Private Sub menuEditItemBserv_Click(sender As Object, e As EventArgs) Handles menuEditItemBserv.Click
+        If ballServer.ExistFile() Then
+            Process.Start(ballServer.FileName)
+        End If
+    End Sub
+
+    Private Sub menuEditItemCameraZoomer_Click(sender As Object, e As EventArgs) Handles menuEditItemCameraZoomer.Click
+        If cameraZoomer.ExistFile() Then
+            Process.Start(cameraZoomer.FileName)
+        End If
+    End Sub
+
+    Private Sub menuEditItemKload_Click(sender As Object, e As EventArgs) Handles menuEditItemKload.Click
+        If kitLoader.ExistFile() Then
+            Process.Start(kitLoader.FileName)
+        End If
+    End Sub
+
+    Private Sub menuEditItemKserv_Click(sender As Object, e As EventArgs) Handles menuEditItemKserv.Click
+        If kitServer.ExistFile() Then
+            Process.Start(kitServer.FileName)
+        End If
+    End Sub
+
+    Private Sub menuEditItemSpeeder_Click(sender As Object, e As EventArgs) Handles menuEditItemSpeeder.Click
+        If speeder.ExistFile() Then
+            Process.Start(speeder.FileName)
+        End If
     End Sub
 End Class

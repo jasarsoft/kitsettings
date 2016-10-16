@@ -1,4 +1,4 @@
-﻿Public NotInheritable Class formAbout
+﻿Public NotInheritable Class FormAbout
 
     ''' <summary>Private Application About Variable</summary>
     Private appAbout As About

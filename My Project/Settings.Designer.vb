@@ -64,9 +64,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.Jasarsoft.Kitserver.Six.Settings.My.MySettings
+        Friend ReadOnly Property Settings() As Global.Jasarsoft.KitSettings.My.MySettings
             Get
-                Return Global.Jasarsoft.Kitserver.Six.Settings.My.MySettings.Default
+                Return Global.Jasarsoft.KitSettings.My.MySettings.Default
             End Get
         End Property
     End Module
