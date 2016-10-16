@@ -57,7 +57,8 @@ Public Class PesFolder
                 Dim msgText As String
                 Dim msgTitle As New MessageTitle()
 
-                msgText = dirName & " directory do not exist." & Environment.NewLine
+                msgText = dirName.Replace("..\", "").Replace(myDir, "")
+                msgText += " directory do not exist." & Environment.NewLine
                 msgText += "Your game may not work properly."
 
                 MessageBox.Show(msgText, msgTitle.TitleWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning)
