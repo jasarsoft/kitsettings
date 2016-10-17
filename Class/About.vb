@@ -13,13 +13,13 @@ Public NotInheritable Class About
         ''' <summary>Application Title Name</summary>
         Public Const appTitle As String = "Kitserver 6 Settings"
         ''' <summary>Application Version Value</summary>
-        Public Const appVersion As String = "1.0.0.0 Aplha"
+        Public Const appVersion As String = "1.0.0.0 Beta"
         ''' <summary>Application Developer Name</summary>
         Public Const appDeveloper As String = "Edin Jašarević"
         ''' <summary>Application License</summary>
         Public Const appLicense As String = "Apache License, Version 2.0"
         ''' <summary>Application Website Name</summary>
-        Public Const appWebsite As String = "www.github/jasarsoft/kitsettings"
+        Public Const appWebsite As String = "www.github.com/jasarsoft/kitsettings"
         ''' <summary>Application Description Text</summary>
         Public Const appDescription As String = "Kitserver 6 Settings application for editing kitserver parameters in the " & _
                                                 "configuration file for Pro Evolution Soccer 6 game through a simple interface."
