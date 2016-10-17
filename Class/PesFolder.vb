@@ -3,7 +3,7 @@
 ''' <summary>
 ''' Pro Evolution Soccer 6 Directory Class
 ''' </summary>
-Public Class PesFolder
+Public NotInheritable Class PesFolder
 
 #Region "Fields"
     ''' <summary>Local directory filed</summary>
