@@ -107,7 +107,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Class\Speeder.vb" />
-    <Compile Include="Class\Resolution.vb" />
+    <Compile Include="Class\Display.vb" />
     <Compile Include="Class\PesFile.vb" />
     <Compile Include="Class\PesFolder.vb" />
     <Compile Include="Class\PesRegistry.vb" />

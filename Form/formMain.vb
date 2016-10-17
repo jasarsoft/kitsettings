@@ -7,7 +7,7 @@
     Dim kitServer As KitServer
     Dim kitLoader As KitLoader
     Dim speeder As Speeder
-    Dim resolution As Resolution
+    Dim resolution As Display
 
     Private Delegate Function Save() As Boolean
 
@@ -24,7 +24,7 @@
         kitServer = New KitServer()
         kitLoader = New KitLoader()
         speeder = New Speeder()
-        resolution = New Resolution()
+        resolution = New Display()
     End Sub
 
     Private Sub DefaultValue()
