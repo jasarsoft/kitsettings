@@ -1,5 +1,9 @@
 ﻿Imports System.Runtime.InteropServices
 
+' Custom class for display detection
+' Used literature with CodeGuru website.
+
+
 ''' <summary>
 ''' Display information computer
 ''' </summary>
