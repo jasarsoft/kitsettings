@@ -1,41 +1,78 @@
 ﻿Imports System.IO
 
+''' <summary>
+''' Pro Evolution Soccer 6 File Class
+''' </summary>
 Public Class PesFile
 
+#Region "Fields"
+    ''' <summary>Field name application files</summary>
     Private _appFile As AppFile
+    ''' <summary>Field name help files</summary>
     Private _helpFile As HelpFile
+    ''' <summary>Field name AFS files</summary>
     Private _afsFile(14) As String
 
+    ''' <summary>Field for the instance folder</summary>
     Private pesFolder As PesFolder
 
 
+    ''' <summary>
+    ''' The structure of application files
+    ''' </summary>
     Private Structure AppFile
         Public pes6 As String
         Public settings As String
     End Structure
 
+    ''' <summary>
+    ''' The structure of help files
+    ''' </summary>
     Private Structure HelpFile
         Public readme As String
     End Structure
+#End Region
 
+#Region "Properties"
+    ''' <summary>
+    ''' The name with path of PES6 main application
+    ''' </summary>
+    ''' <value>String</value>
+    ''' <returns>..\PES6.exe</returns>
     Public ReadOnly Property AppPES6 As String
         Get
             Return _appFile.pes6
         End Get
     End Property
 
+    ''' <summary>
+    ''' The name with a path of PES6 settings application
+    ''' </summary>
+    ''' <value>String</value>
+    ''' <returns>..\settings.exe</returns>
     Public ReadOnly Property AppSettings As String
         Get
             Return _appFile.settings
         End Get
     End Property
 
+    ''' <summary>
+    ''' The name with a path of PES6 readme file
+    ''' </summary>
+    ''' <value>String</value>
+    ''' <returns>..\readme.htm</returns>
     Public ReadOnly Property ReadmeFile As String
         Get
             Return _helpFile.readme
         End Get
     End Property
+#End Region
 
+
+#Region "Constructor"
+    ''' <summary>
+    ''' Default initialization constructor
+    ''' </summary>
     Public Sub New()
         pesFolder = New PesFolder()
 
@@ -46,7 +83,12 @@ Public Class PesFile
 
         Call GenerateAfs()
     End Sub
+#End Region
 
+#Region "Methods"
+    ''' <summary>
+    ''' Generating AFS files in the series
+    ''' </summary>
     Private Sub GenerateAfs()
         'PES 6 Opmov File
         _afsFile(0) = pesFolder.DirDat & "\opmov"
@@ -73,6 +115,12 @@ Public Class PesFile
         _afsFile(14) = pesFolder.DirDat & "\s_sound.afs"
     End Sub
 
+    ''' <summary>
+    ''' Checking the existence of the input file
+    ''' </summary>
+    ''' <param name="fileName"></param>
+    ''' <returns>Boolean</returns>
+    ''' <remarks>Sends a message if the file does not exist</remarks>
     Public Function Check(ByVal fileName As String) As Boolean
 
         If File.Exists(fileName) Then
@@ -84,7 +132,11 @@ Public Class PesFile
         Return False
     End Function
 
-
+    ''' <summary>
+    ''' Checking for all AFS files
+    ''' </summary>
+    ''' <returns>Boolean</returns>
+    ''' <remarks>Sends a message if the file does not exist</remarks>
     Public Function CheckAfs() As Boolean
         Dim pesRegistry As New PesRegistry()
 
@@ -114,6 +166,10 @@ Public Class PesFile
         Return True
     End Function
 
+    ''' <summary>
+    ''' Display error message
+    ''' </summary>
+    ''' <param name="fileName"></param>
     Private Sub MessageError(ByVal fileName As String)
         Dim msgText As String
         Dim msgTitle As New MessageTitle()
@@ -124,5 +180,6 @@ Public Class PesFile
 
         MessageBox.Show(msgText, msgTitle.TitleWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning)
     End Sub
+#End Region
 
 End Class
