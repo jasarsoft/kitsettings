@@ -3,7 +3,7 @@
 ''' <summary>
 ''' Pro Evolution Soccer 6 File Class
 ''' </summary>
-Public Class PesFile
+Public NotInheritable Class PesFile
 
 #Region "Fields"
     ''' <summary>Field name application files</summary>
