@@ -1,9 +1,19 @@
 ﻿Imports Microsoft.Win32
 
-Public Class PesRegistry
+''' <summary>
+''' Pro Evolution Soccer 6 parameters registry
+''' </summary>
+Public NotInheritable Class PesRegistry
 
+#Region "Fields/Variables"
+    ''' <summary>Registry values</summary>
     Private _regValue As RegValue
+#End Region
 
+#Region "Constants"
+    ''' <summary>
+    ''' Constants registry key
+    ''' </summary>
     Private Structure RegName
         Public Const code As String = "code"
         Public Const installDir As String = "installdir"
@@ -16,6 +26,9 @@ Public Class PesRegistry
         Public Const langSpanish As String = "lang_s"
     End Structure
 
+    ''' <summary>
+    ''' Registry values
+    ''' </summary>
     Private Structure RegValue
         Public code As String
         Public installDir As String
@@ -27,7 +40,14 @@ Public Class PesRegistry
         Public langPolish As Boolean
         Public langSpanish As Boolean
     End Structure
+#End Region
 
+#Region "Properties"
+    ''' <summary>
+    ''' Unique code of the game
+    ''' </summary>
+    ''' <value>String</value>
+    ''' <returns>_regValue.code</returns>
     Public Property Code As String
         Get
             Return _regValue.code
@@ -37,6 +57,11 @@ Public Class PesRegistry
         End Set
     End Property
 
+    ''' <summary>
+    ''' Location of installed game
+    ''' </summary>
+    ''' <value>String</value>
+    ''' <returns>_regValue.installDir</returns>
     Public Property InstallDir As String
         Get
             Return _regValue.installDir
@@ -46,6 +71,11 @@ Public Class PesRegistry
         End Set
     End Property
 
+    ''' <summary>
+    ''' The location form which a game is installed
+    ''' </summary>
+    ''' <value>String</value>
+    ''' <returns>_regValue.installFrom</returns>
     Public Property InstallFrom As String
         Get
             Return _regValue.installFrom
@@ -55,6 +85,11 @@ Public Class PesRegistry
         End Set
     End Property
 
+    ''' <summary>
+    ''' The game installed with English language
+    ''' </summary>
+    ''' <value>Boolean</value>
+    ''' <returns>_regValue.langEnglish</returns>
     Public Property LangEnglish As Boolean
         Get
             Return _regValue.langEnglish
@@ -64,6 +99,11 @@ Public Class PesRegistry
         End Set
     End Property
 
+    ''' <summary>
+    ''' The game installed with French language
+    ''' </summary>
+    ''' <value>Boolean</value>
+    ''' <returns>_regValue.langFrench</returns>
     Public Property LangFrench As Boolean
         Get
             Return _regValue.langFrench
@@ -73,6 +113,11 @@ Public Class PesRegistry
         End Set
     End Property
 
+    ''' <summary>
+    ''' The game installed with German language
+    ''' </summary>
+    ''' <value>Boolean</value>
+    ''' <returns>_regValue.langGerman</returns>
     Public Property LangGerman As Boolean
         Get
             Return _regValue.langGerman
@@ -82,6 +127,11 @@ Public Class PesRegistry
         End Set
     End Property
 
+    ''' <summary>
+    ''' The game installed with Italian language
+    ''' </summary>
+    ''' <value>Boolean</value>
+    ''' <returns>_regValue.langItalian</returns>
     Public Property LangItalian As Boolean
         Get
             Return _regValue.langItalian
@@ -91,6 +141,11 @@ Public Class PesRegistry
         End Set
     End Property
 
+    ''' <summary>
+    ''' The game installed with Polish language
+    ''' </summary>
+    ''' <value>Boolean</value>
+    ''' <returns>_regValue.langPolish</returns>
     Public Property LangPolish As Boolean
         Get
             Return _regValue.langPolish
@@ -100,6 +155,11 @@ Public Class PesRegistry
         End Set
     End Property
 
+    ''' <summary>
+    ''' The game installed with Spanish language
+    ''' </summary>
+    ''' <value>Boolean</value>
+    ''' <returns>_regValue.langSpanish</returns>
     Public Property LangSpanish As Boolean
         Get
             Return _regValue.langSpanish
@@ -108,8 +168,12 @@ Public Class PesRegistry
             _regValue.langSpanish = value
         End Set
     End Property
+#End Region
 
-
+#Region "Constructor"
+    ''' <summary>
+    ''' Default initializazion constructor
+    ''' </summary>
     Public Sub New()
         _regValue.code = ""
         _regValue.installDir = ""
@@ -121,8 +185,13 @@ Public Class PesRegistry
         _regValue.langPolish = False
         _regValue.langSpanish = False
     End Sub
+#End Region
 
-
+#Region "Methods"
+    ''' <summary>
+    ''' Read all registry values
+    ''' </summary>
+    ''' <returns>Boolean</returns>
     Public Function Read() As Boolean
         Dim regKey As RegistryKey
 
@@ -155,6 +224,13 @@ Public Class PesRegistry
         Return False
     End Function
 
+    ''' <summary>
+    ''' Read the text registry key
+    ''' </summary>
+    ''' <param name="regKey"></param>
+    ''' <param name="regName"></param>
+    ''' <param name="regValue"></param>
+    ''' <returns>Boolean</returns>    
     Private Function ReadRegistry(ByVal regKey As RegistryKey, ByVal regName As String, ByRef regValue As String) As Boolean
         Dim tmpValue As Object
 
@@ -168,6 +244,13 @@ Public Class PesRegistry
         Return False
     End Function
 
+    ''' <summary>
+    ''' Read bool registry key
+    ''' </summary>
+    ''' <param name="regKey"></param>
+    ''' <param name="regName"></param>
+    ''' <param name="regValue"></param>
+    ''' <returns>Boolean</returns>
     Private Function ReadRegistry(ByVal regKey As RegistryKey, ByVal regName As String, ByRef regValue As Boolean) As Boolean
         Dim tmpValue As Object
 
@@ -181,6 +264,9 @@ Public Class PesRegistry
         Return False
     End Function
 
+    ''' <summary>
+    ''' Error message on irregular or non-existent registry
+    ''' </summary>
     Private Sub MessageError()
         Dim msgText As String
         Dim msgTitle As New MessageTitle()
@@ -190,5 +276,6 @@ Public Class PesRegistry
 
         MessageBox.Show(msgText, msgTitle.TitleWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning)
     End Sub
+#End Region
 
 End Class
