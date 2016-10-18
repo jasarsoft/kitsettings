@@ -1,9 +1,16 @@
 ﻿Imports System.IO
-Imports System.Text
-Imports System.Security
 Imports System.Security.Cryptography
-Public NotInheritable Class Hash
 
+''' <summary>
+''' Custom MD5 Hash File Class
+''' </summary>
+Public NotInheritable Class Hash
+    ''' <summary>
+    ''' Get MD5 hash value for the file
+    ''' </summary>
+    ''' <param name="fileName"></param>
+    ''' <returns>String</returns>
+    ''' <remarks>Hash value is in uppercase</remarks>
     Private Function HashFileGenerator(ByVal fileName As String) As String
 
         Dim hashValue() As Byte
@@ -23,7 +30,12 @@ Public NotInheritable Class Hash
         Return hex_value
     End Function
 
-
+    ''' <summary>
+    ''' MD5 hash value for the file
+    ''' </summary>
+    ''' <param name="fileName"></param>
+    ''' <returns>String</returns>
+    ''' <remarks>Hash value is in uppercase</remarks>
     Public Function HashFileMD5(ByVal fileName As String) As String
 
         If File.Exists(fileName) Then
