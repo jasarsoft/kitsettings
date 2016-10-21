@@ -38,9 +38,9 @@ Public NotInheritable Class BootServer
     ''' </summary>
     ''' <value>String</value>
     ''' <returns>bootserv.cfg</returns>
-    Public Overloads ReadOnly Property FileName As String
+    Public Overloads ReadOnly Property Name As String
         Get
-            Return Info.fileName & MyBase.FileName
+            Return Info.fileName & MyBase.Name
         End Get
     End Property
     ''' <summary>
@@ -48,9 +48,9 @@ Public NotInheritable Class BootServer
     ''' </summary>
     ''' <value>String</value>
     ''' <returns>Boot Server configuration file</returns>
-    Public Overloads ReadOnly Property TitleName As String
+    Public Overloads ReadOnly Property Title As String
         Get
-            Return Info.titleName & MyBase.TitleName
+            Return Info.titleName & MyBase.Title
         End Get
     End Property
 
@@ -126,7 +126,7 @@ Public NotInheritable Class BootServer
         Dim msgText As MessageText = New MessageText()
         Dim msgTitle As MessageTitle = New MessageTitle()
 
-        tmpText = TitleName & msgText.ID10 & Environment.NewLine & msgText.ID01
+        tmpText = Title & msgText.ID10 & Environment.NewLine & msgText.ID01
 
         msgResult = MessageBox.Show(tmpText, msgTitle.TitleWarning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If msgResult = DialogResult.Yes Then
@@ -143,9 +143,9 @@ Public NotInheritable Class BootServer
     ''' </summary>
     ''' <returns>Boolean</returns>
     ''' <remarks>The function gives a message in error</remarks>
-    Public Overloads Function ExistFile() As Boolean
+    Public Overloads Function Check() As Boolean
 
-        If MyBase.ExistFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.Check(Name, Title, GenerateData()) Then
             Return True
         Else
             Return False
@@ -160,7 +160,7 @@ Public NotInheritable Class BootServer
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function DeleteFile() As Boolean
 
-        If MyBase.DeleteFile(FileName, TitleName) Then
+        If MyBase.DeleteFile(Name, Title) Then
             Return True
         Else
             Return False
@@ -175,7 +175,7 @@ Public NotInheritable Class BootServer
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function CreateFile() As Boolean
 
-        If MyBase.CreateFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.CreateFile(Name, Title, GenerateData()) Then
             Return True
         Else
             Return False
@@ -190,14 +190,14 @@ Public NotInheritable Class BootServer
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function WriteFile() As Boolean
 
-        If MyBase.WriteFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.WriteFile(Name, Title, GenerateData()) Then
             Return True
         Else
             Dim tmpText As String
             Dim msgText As MessageText = New MessageText()
             Dim msgTitle As MessageTitle = New MessageTitle()
 
-            tmpText = TitleName & msgText.ID11 & Environment.NewLine & msgText.ID00
+            tmpText = Title & msgText.ID11 & Environment.NewLine & msgText.ID00
             MessageBox.Show(tmpText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
@@ -212,7 +212,7 @@ Public NotInheritable Class BootServer
     Public Overloads Function ReadFile() As Boolean
         Dim readValue As String
 
-        readValue = MyBase.ReadFile(FileName, Parameter.randomBoots)
+        readValue = MyBase.ReadFile(Name, Parameter.randomBoots)
 
         If IsNumeric(readValue) Then
             _randomBoots = MyBase.ConvertValue(readValue)
@@ -224,7 +224,7 @@ Public NotInheritable Class BootServer
             End If
         End If
 
-        readValue = MyBase.ReadFile(FileName, Parameter.versionBoots)
+        readValue = MyBase.ReadFile(Name, Parameter.versionBoots)
 
         If IsNumeric(readValue) Then
             _versionBoots = MyBase.ConvertValue(readValue)

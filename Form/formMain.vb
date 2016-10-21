@@ -154,20 +154,20 @@ Public Class FormMain
 
         DefaultValue()
 
-        If _kitServer.ExistFile() And _kitServer.ReadFile() Then
+        If _kitServer.Check() And _kitServer.ReadFile() Then
             Combo.SetBoolValue(Me.comboHDKits, _kitServer.HdKitsEnable)
         End If
 
-        If _ballServer.ExistFile() And _ballServer.ReadFile() Then
+        If _ballServer.Check() And _ballServer.ReadFile() Then
             Combo.SetBoolValue(Me.comboBallPreview, _ballServer.BallPreview)
         End If
 
-        If _bootServer.ExistFile() And _bootServer.ReadFile() Then
+        If _bootServer.Check() And _bootServer.ReadFile() Then
             Combo.SetBoolValue(Me.comboLowBoots, _bootServer.VersionBoots)
             Combo.SetBoolValue(Me.comboRandomBoots, _bootServer.RandomBoots)
         End If
 
-        If _cameraZoomer.ExistFile() And _cameraZoomer.ReadFile() Then
+        If _cameraZoomer.Check() And _cameraZoomer.ReadFile() Then
             'Adjusting the loaded value
             Combo.SetBoolValue(Me.comboStadiumRoof, _cameraZoomer.StadiumRoof)
             Combo.SetBoolValue(Me.comboStadiumClipping, _cameraZoomer.StadiumClipping)
@@ -180,7 +180,7 @@ Public Class FormMain
             End If
         End If
 
-        If _speeder.ExistFile() And _speeder.ReadFile() Then
+        If _speeder.Check() And _speeder.ReadFile() Then
             'Adjusting the loaded value
             If _speeder.CountFactor > Me.numericSpeedModule.Maximum Then
                 Me.numericSpeedModule.Value = Me.numericSpeedModule.Maximum
@@ -191,7 +191,7 @@ Public Class FormMain
             End If
         End If
 
-        If _kitLoader.ExistFile() And _kitLoader.ReadFile() Then
+        If _kitLoader.Check() And _kitLoader.ReadFile() Then
             'Adjusting the loaded value
             If _kitLoader.ReservedMemory > (CType(Me.numericReservedMemory.Value, UInteger) * 1024 * 1024) Then
                 Me.numericReservedMemory.Value = Me.numericReservedMemory.Maximum
@@ -335,8 +335,8 @@ Public Class FormMain
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Edit Item Afs2fs Click Event</remarks>
     Private Sub MenuEditItemAfs2fs_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuEditItemAfs2fs.Click
-        If _afs2fs.ExistFile() Then
-            Call RunCfgFile(_afs2fs.FileName)
+        If _afs2fs.Check() Then
+            Call RunCfgFile(_afs2fs.Name)
         End If
     End Sub
     ''' <summary>
@@ -346,8 +346,8 @@ Public Class FormMain
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Edit Item Boot Server Click Event</remarks>
     Private Sub MenuEditItemBootServ_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuEditItemBootServ.Click
-        If _bootServer.ExistFile() Then
-            Call RunCfgFile(_bootServer.FileName)
+        If _bootServer.Check() Then
+            Call RunCfgFile(_bootServer.Name)
         End If
     End Sub
     ''' <summary>
@@ -357,8 +357,8 @@ Public Class FormMain
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Edit Item Ball Server Click Event</remarks>
     Private Sub MenuEditItemBserv_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuEditItemBserv.Click
-        If _ballServer.ExistFile() Then
-            Call RunCfgFile(_ballServer.FileName)
+        If _ballServer.Check() Then
+            Call RunCfgFile(_ballServer.Name)
         End If
     End Sub
     ''' <summary>
@@ -368,8 +368,8 @@ Public Class FormMain
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Edit Item Camera Zoomer Click Event</remarks>
     Private Sub MenuEditItemCameraZoomer_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuEditItemCameraZoomer.Click
-        If _cameraZoomer.ExistFile() Then
-            Call RunCfgFile(_cameraZoomer.FileName)
+        If _cameraZoomer.Check() Then
+            Call RunCfgFile(_cameraZoomer.Name)
         End If
     End Sub
     ''' <summary>
@@ -379,8 +379,8 @@ Public Class FormMain
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Edit Item Kitserver Loader Click Event</remarks>
     Private Sub MenuEditItemKload_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuEditItemKload.Click
-        If _kitLoader.ExistFile() Then
-            Call RunCfgFile(_kitLoader.FileName)
+        If _kitLoader.Check() Then
+            Call RunCfgFile(_kitLoader.Name)
         End If
     End Sub
     ''' <summary>
@@ -390,8 +390,8 @@ Public Class FormMain
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Edit Item Kit Server Click Event</remarks>
     Private Sub MenuEditItemKserv_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuEditItemKserv.Click
-        If _kitServer.ExistFile() Then
-            Call RunCfgFile(_kitServer.FileName)
+        If _kitServer.Check() Then
+            Call RunCfgFile(_kitServer.Name)
         End If
     End Sub
     ''' <summary>
@@ -401,8 +401,8 @@ Public Class FormMain
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Edit Item Speeder Click Event</remarks>
     Private Sub MenuEditItemSpeeder_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuEditItemSpeeder.Click
-        If _speeder.ExistFile() Then
-            Call RunCfgFile(_speeder.FileName)
+        If _speeder.Check() Then
+            Call RunCfgFile(_speeder.Name)
         End If
     End Sub
 #End Region

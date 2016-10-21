@@ -58,9 +58,9 @@ Public NotInheritable Class KitServer
     ''' </summary>
     ''' <value>String</value>
     ''' <returns>kserv.cfg</returns>
-    Public Overloads ReadOnly Property FileName As String
+    Public Overloads ReadOnly Property Name As String
         Get
-            Return Info.fileName & MyBase.FileName
+            Return Info.fileName & MyBase.Name
         End Get
     End Property
     ''' <summary>
@@ -70,7 +70,7 @@ Public NotInheritable Class KitServer
     ''' <returns>Kit Server configuration file</returns>
     Public Overloads ReadOnly Property TitleName As String
         Get
-            Return Info.titleName & MyBase.TitleName
+            Return Info.titleName & MyBase.Title
         End Get
     End Property
 
@@ -188,9 +188,9 @@ Public NotInheritable Class KitServer
     ''' </summary>
     ''' <returns>Boolean</returns>
     ''' <remarks>The function gives a message in error</remarks>
-    Public Overloads Function ExistFile() As Boolean
+    Public Overloads Function Check() As Boolean
 
-        If MyBase.ExistFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.Check(Name, TitleName, GenerateData()) Then
             Return True
         Else
             Return False
@@ -205,7 +205,7 @@ Public NotInheritable Class KitServer
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function DeleteFile() As Boolean
 
-        If MyBase.DeleteFile(FileName, TitleName) Then
+        If MyBase.DeleteFile(Name, TitleName) Then
             Return True
         Else
             Return False
@@ -220,7 +220,7 @@ Public NotInheritable Class KitServer
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function CreateFile() As Boolean
 
-        If MyBase.CreateFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.CreateFile(Name, TitleName, GenerateData()) Then
             Return True
         Else
             Return False
@@ -235,7 +235,7 @@ Public NotInheritable Class KitServer
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function WriteFile() As Boolean
 
-        If MyBase.WriteFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.WriteFile(Name, TitleName, GenerateData()) Then
             Return True
         Else
             Dim tmpText As String
@@ -257,7 +257,7 @@ Public NotInheritable Class KitServer
     Public Overloads Function ReadFile() As Boolean
         Dim readValue As String
 
-        readValue = MyBase.ReadFile(FileName, Parameter.hdKits)
+        readValue = MyBase.ReadFile(Name, Parameter.hdKits)
         If IsNumeric(readValue) Then
             _hdKitsEnable = MyBase.ConvertValue(readValue)
         Else

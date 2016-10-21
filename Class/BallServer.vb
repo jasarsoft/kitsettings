@@ -36,9 +36,9 @@ Public NotInheritable Class BallServer
     ''' </summary>
     ''' <value>String</value>
     ''' <returns>bserver.cfg</returns>
-    Public Overloads ReadOnly Property FileName As String
+    Public Overloads ReadOnly Property Name As String
         Get
-            Return Info.fileName & MyBase.FileName
+            Return Info.fileName & MyBase.Name
         End Get
     End Property
     ''' <summary>
@@ -46,9 +46,9 @@ Public NotInheritable Class BallServer
     ''' </summary>
     ''' <value>String</value>
     ''' <returns>Ball Server configuration file</returns>
-    Public Overloads ReadOnly Property TitleName As String
+    Public Overloads ReadOnly Property Title As String
         Get
-            Return Info.titleName & MyBase.TitleName
+            Return Info.titleName & MyBase.Title
         End Get
     End Property
 
@@ -96,7 +96,7 @@ Public NotInheritable Class BallServer
         Dim msgText As MessageText = New MessageText()
         Dim msgTitle As MessageTitle = New MessageTitle()
 
-        tmpText = TitleName & msgText.ID10 & Environment.NewLine & msgText.ID01
+        tmpText = Title & msgText.ID10 & Environment.NewLine & msgText.ID01
 
         msgResult = MessageBox.Show(tmpText, msgTitle.TitleWarning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If msgResult = DialogResult.Yes Then
@@ -126,9 +126,9 @@ Public NotInheritable Class BallServer
     ''' </summary>
     ''' <returns>Boolean</returns>
     ''' <remarks>The function gives a message in error</remarks>
-    Public Overloads Function ExistFile() As Boolean
+    Public Overloads Function Check() As Boolean
 
-        If MyBase.ExistFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.Check(Name, Title, GenerateData()) Then
             Return True
         Else
             Return False
@@ -143,7 +143,7 @@ Public NotInheritable Class BallServer
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function DeleteFile() As Boolean
 
-        If MyBase.DeleteFile(FileName, TitleName) Then
+        If MyBase.DeleteFile(Name, Title) Then
             Return True
         Else
             Return False
@@ -158,7 +158,7 @@ Public NotInheritable Class BallServer
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function CreateFile() As Boolean
 
-        If MyBase.CreateFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.CreateFile(Name, Title, GenerateData()) Then
             Return True
         Else
             Return False
@@ -173,14 +173,14 @@ Public NotInheritable Class BallServer
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function WriteFile() As Boolean
 
-        If MyBase.WriteFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.WriteFile(Name, Title, GenerateData()) Then
             Return True
         Else
             Dim tmpText As String
             Dim msgText As MessageText = New MessageText()
             Dim msgTitle As MessageTitle = New MessageTitle()
 
-            tmpText = TitleName & msgText.ID11 & Environment.NewLine & msgText.ID00
+            tmpText = Title & msgText.ID11 & Environment.NewLine & msgText.ID00
             MessageBox.Show(tmpText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
@@ -195,7 +195,7 @@ Public NotInheritable Class BallServer
     Public Overloads Function ReadFile() As Boolean
         Dim readValue As String
 
-        readValue = MyBase.ReadFile(FileName, Parameter.ballPreview)
+        readValue = MyBase.ReadFile(Name, Parameter.ballPreview)
 
         If IsNumeric(readValue) Then
             _ballPreview = MyBase.ConvertValue(readValue)

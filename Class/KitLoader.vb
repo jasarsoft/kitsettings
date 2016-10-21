@@ -72,9 +72,9 @@ Public NotInheritable Class KitLoader
     ''' </summary>
     ''' <value>String</value>
     ''' <returns>kload.cfg</returns>
-    Public Overloads ReadOnly Property FileName As String
+    Public Overloads ReadOnly Property Name As String
         Get
-            Return Info.fileName & MyBase.FileName
+            Return Info.fileName & MyBase.Name
         End Get
     End Property
 
@@ -83,9 +83,9 @@ Public NotInheritable Class KitLoader
     ''' </summary>
     ''' <value>String</value>
     ''' <returns>Kitserver Loader configuration file</returns>
-    Public Overloads ReadOnly Property TitleName As String
+    Public Overloads ReadOnly Property Title As String
         Get
-            Return Info.titleName & MyBase.TitleName
+            Return Info.titleName & MyBase.Title
         End Get
     End Property
 
@@ -274,7 +274,7 @@ Public NotInheritable Class KitLoader
         Dim msgText As MessageText = New MessageText()
         Dim msgTitle As MessageTitle = New MessageTitle()
 
-        tmpText = TitleName & msgText.ID10 & Environment.NewLine & msgText.ID01
+        tmpText = Title & msgText.ID10 & Environment.NewLine & msgText.ID01
 
         msgResult = MessageBox.Show(tmpText, msgTitle.TitleWarning, MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
         If msgResult = DialogResult.Yes Then
@@ -291,9 +291,9 @@ Public NotInheritable Class KitLoader
     ''' </summary>
     ''' <returns>Boolean</returns>
     ''' <remarks>The function gives a message in error</remarks>
-    Public Overloads Function ExistFile() As Boolean
+    Public Overloads Function Check() As Boolean
 
-        If MyBase.ExistFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.Check(Name, Title, GenerateData()) Then
             Return True
         Else
             Return False
@@ -308,7 +308,7 @@ Public NotInheritable Class KitLoader
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function DeleteFile() As Boolean
 
-        If MyBase.DeleteFile(FileName, TitleName) Then
+        If MyBase.DeleteFile(Name, Title) Then
             Return True
         Else
             Return False
@@ -323,7 +323,7 @@ Public NotInheritable Class KitLoader
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function CreateFile() As Boolean
 
-        If MyBase.CreateFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.CreateFile(Name, Title, GenerateData()) Then
             Return True
         Else
             Return False
@@ -338,14 +338,14 @@ Public NotInheritable Class KitLoader
     ''' <remarks>The function gives a message in error</remarks>
     Public Overloads Function WriteFile() As Boolean
 
-        If MyBase.WriteFile(FileName, TitleName, GenerateData()) Then
+        If MyBase.WriteFile(Name, Title, GenerateData()) Then
             Return True
         Else
             Dim tmpText As String
             Dim msgText As MessageText = New MessageText()
             Dim msgTitle As MessageTitle = New MessageTitle()
 
-            tmpText = TitleName & msgText.ID11 & Environment.NewLine & msgText.ID00
+            tmpText = Title & msgText.ID11 & Environment.NewLine & msgText.ID00
             MessageBox.Show(tmpText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
 
@@ -372,7 +372,7 @@ Public NotInheritable Class KitLoader
         '    End If
         'End If
 
-        readValue = MyBase.ReadFile(FileName, Parameter.reservedMemory)
+        readValue = MyBase.ReadFile(Name, Parameter.reservedMemory)
         If IsNumeric(readValue) Then
             _reservedMemory = CType(readValue, UInteger)
         Else
@@ -380,13 +380,13 @@ Public NotInheritable Class KitLoader
         End If
 
         'Read Force and Emulate for 3D Analyzer
-        readValue = MyBase.ReadFile(FileName, Parameter.forceSW)
+        readValue = MyBase.ReadFile(Name, Parameter.forceSW)
         If IsNumeric(readValue) Then
             _forceSW = MyBase.ConvertEnable(readValue)
         Else
             Return ReadError()
         End If
-        readValue = MyBase.ReadFile(FileName, Parameter.emulateHW)
+        readValue = MyBase.ReadFile(Name, Parameter.emulateHW)
         If IsNumeric(readValue) Then
             _emulateHW = MyBase.ConvertEnable(readValue)
         Else
@@ -400,7 +400,7 @@ Public NotInheritable Class KitLoader
 
 
         'Read Resolution: Width
-        readValue = MyBase.ReadFile(FileName, Parameter.fullscreenWidth)
+        readValue = MyBase.ReadFile(Name, Parameter.fullscreenWidth)
         If IsNumeric(readValue) Then
             _fullscreenWidth = CType(readValue, UInteger)
             _renderDirectX = True
@@ -410,7 +410,7 @@ Public NotInheritable Class KitLoader
             Return ReadError()
         End If
         'Read Resolution: Height
-        readValue = MyBase.ReadFile(FileName, Parameter.fullscreenHeight)
+        readValue = MyBase.ReadFile(Name, Parameter.fullscreenHeight)
         If IsNumeric(readValue) And _renderDirectX Then
             _fullscreenHeight = CType(readValue, UInteger)
         ElseIf readValue Is Nothing And _renderDirectX Then
@@ -422,6 +422,5 @@ Public NotInheritable Class KitLoader
         Return True
     End Function
 #End Region
-
 
 End Class
