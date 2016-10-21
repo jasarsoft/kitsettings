@@ -32,7 +32,7 @@ Partial Class FormMain
         Me.menuFileItemSave = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuFileItemDefault = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuFileItemSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.menuFileItemExist = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuFileItemExit = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuItemEdit = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuEditItemAfs2fs = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuEditItemBootServ = New System.Windows.Forms.ToolStripMenuItem()
@@ -99,7 +99,7 @@ Partial Class FormMain
         '
         'menuItemFile
         '
-        Me.menuItemFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuFileItemPlay, Me.menuFileItemFolder, Me.menuFileItemSeparator1, Me.menuFileItemSave, Me.menuFileItemDefault, Me.menuFileItemSeparator2, Me.menuFileItemExist})
+        Me.menuItemFile.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuFileItemPlay, Me.menuFileItemFolder, Me.menuFileItemSeparator1, Me.menuFileItemSave, Me.menuFileItemDefault, Me.menuFileItemSeparator2, Me.menuFileItemExit})
         Me.menuItemFile.Name = "menuItemFile"
         Me.menuItemFile.Size = New System.Drawing.Size(37, 20)
         Me.menuItemFile.Text = "&File"
@@ -142,12 +142,12 @@ Partial Class FormMain
         Me.menuFileItemSeparator2.Name = "menuFileItemSeparator2"
         Me.menuFileItemSeparator2.Size = New System.Drawing.Size(151, 6)
         '
-        'menuFileItemExist
+        'menuFileItemExit
         '
-        Me.menuFileItemExist.Name = "menuFileItemExist"
-        Me.menuFileItemExist.ShortcutKeyDisplayString = "Ctrl+X"
-        Me.menuFileItemExist.Size = New System.Drawing.Size(154, 22)
-        Me.menuFileItemExist.Text = "E&xit"
+        Me.menuFileItemExit.Name = "menuFileItemExit"
+        Me.menuFileItemExit.ShortcutKeyDisplayString = "Ctrl+X"
+        Me.menuFileItemExit.Size = New System.Drawing.Size(154, 22)
+        Me.menuFileItemExit.Text = "E&xit"
         '
         'menuItemEdit
         '
@@ -673,7 +673,7 @@ Partial Class FormMain
     Friend WithEvents menuFileItemSave As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuFileItemDefault As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuFileItemSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents menuFileItemExist As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents menuFileItemExit As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents toolTipMain As System.Windows.Forms.ToolTip
     Friend WithEvents menuHelpItemKitserver As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuHelpItemPES6Readme As System.Windows.Forms.ToolStripMenuItem
