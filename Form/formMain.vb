@@ -77,6 +77,9 @@ Public Class FormMain
     ''' Read the current paramter settings with form
     ''' </summary>
     Private Sub ReadSettings()
+        'Disable controls
+        Call DisableSettings()
+        'Read constrols paramter
         _kitServer.HdKitsEnable = Combo.GetBoolValue(Me.comboHDKits)
         _ballServer.BallPreview = Combo.GetBoolValue(Me.comboBallPreview)
         _bootServer.VersionBoots = Combo.GetBoolValue(Me.comboLowBoots)
@@ -95,26 +98,6 @@ Public Class FormMain
             _kitLoader.FullscreenHeight = _display.Height.Item(Me.comboFullscreenResolution.SelectedIndex)
         End If
 
-    End Sub
-
-    ''' <summary>
-    ''' Start PES application
-    ''' </summary>
-    Private Sub RunPES()
-        Dim pesFile As New PesFile()
-
-        If pesFile.Check(pesFile.AppPES6) Then
-            Process.Start(pesFile.AppPES6)
-        End If
-    End Sub
-
-    ''' <summary>
-    ''' Open the file in Notepad
-    ''' </summary>
-    ''' <param name="fileName">String</param>
-    Private Sub RunCfgFile(ByVal fileName As String)
-        'Open notepad with argument
-        Process.Start("notepad.exe", fileName)
     End Sub
 
     ''' <summary>
@@ -139,7 +122,70 @@ Public Class FormMain
             msgText = "The settings are not successfully saved."
             MessageBox.Show(msgText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
+
+        Call EnableSettings()
     End Sub
+
+    ''' <summary>
+    ''' Disable all constrols to modify parameters
+    ''' </summary>
+    Private Sub DisableSettings()
+        Me.comboHDKits.Enabled = False
+        Me.comboBallPreview.Enabled = False
+        Me.comboLowBoots.Enabled = False
+        Me.comboRandomBoots.Enabled = False
+        Me.comboStadiumRoof.Enabled = False
+        Me.comboStadiumClipping.Enabled = False
+        Me.numericCameraZoom.Enabled = False
+        Me.numericSpeedModule.Enabled = False
+        Me.numericReservedMemory.Enabled = False
+        Me.combo3DAnalyzer.Enabled = False
+        Me.comboRenderDirectX.Enabled = False
+        Me.comboFullscreenResolution.Enabled = False
+    End Sub
+
+    ''' <summary>
+    ''' Enable all constrols to modify parameters
+    ''' </summary>
+    Private Sub EnableSettings()
+        Me.comboHDKits.Enabled = True
+        Me.comboBallPreview.Enabled = True
+        Me.comboLowBoots.Enabled = True
+        Me.comboRandomBoots.Enabled = True
+        Me.comboStadiumRoof.Enabled = True
+        Me.comboStadiumClipping.Enabled = True
+        Me.numericCameraZoom.Enabled = True
+        Me.numericSpeedModule.Enabled = True
+        Me.numericReservedMemory.Enabled = True
+        Me.combo3DAnalyzer.Enabled = True
+        Me.comboRenderDirectX.Enabled = True
+
+        If _kitLoader.RenderDirectX Then
+            Me.comboFullscreenResolution.Enabled = True
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Start PES application
+    ''' </summary>
+    Private Sub RunPES()
+        Dim pesFile As New PesFile()
+
+        If pesFile.Check(pesFile.AppPES6) Then
+            Process.Start(pesFile.AppPES6)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Open the file in Notepad
+    ''' </summary>
+    ''' <param name="fileName">String</param>
+    Private Sub RunCfgFile(ByVal fileName As String)
+        'Open notepad with argument
+        Process.Start("notepad.exe", fileName)
+    End Sub
+
+    
 #End Region
 
 #Region "Events"
