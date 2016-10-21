@@ -3,50 +3,46 @@
 Public MustInherit Class ConfigurationFile
 
     ''' <summary>
-    ''' Basic information about the file.
+    ''' Basic information about the file
     ''' </summary>
     Private Structure Info
-        ''' <summary>
-        ''' File Name = '.cfg'
-        ''' </summary>
-        Public Const fileName As String = ".cfg"
-        ''' <summary>
-        ''' Title Name = ' configuration file'
-        ''' </summary>
-        Public Const titleName As String = " configuration file"
+        ''' <summary>Name the configuration file, ie. extension because of inheritance</summary>
+        Public Const name As String = ".cfg"
+        ''' <summary>Title the configuration file, ie. group title because of inheritance</summary>
+        Public Const title As String = " configuration file"
     End Structure
 
     ''' <summary>
-    ''' The extension configuration file name.
+    ''' Property for getting an extension of the configuration file
     ''' </summary>
-    ''' <returns>String: '.cfg'</returns>
-    ''' <remarks>The property must be inherited.</remarks>
-    Protected Overridable ReadOnly Property FileName As String
+    ''' <returns>Returns the extension configuration file</returns>
+    ''' <remarks>The property must be inherited</remarks>
+    Protected Overridable ReadOnly Property Name As String
         Get
-            Return Info.fileName
+            Return Info.name
         End Get
     End Property
 
     ''' <summary>
-    ''' Property group title.
+    ''' Property for getting part of the title configuration file
     ''' </summary>
-    ''' <returns>String: ' configuration file'</returns>
-    ''' <remarks>The property must be inherited.</remarks>
-    Protected Overridable ReadOnly Property TitleName As String
+    ''' <returns>Returns a part of the title for the configuration file</returns>
+    ''' <remarks>The property must be inherited</remarks>
+    Protected Overridable ReadOnly Property Title As String
         Get
-            Return Info.titleName
+            Return Info.title
         End Get
     End Property
 
     ''' <summary>
-    ''' The function for getting information about the existance of the file
+    ''' Check for existance of the configuration file
     ''' </summary>
-    ''' <param name="fileName"></param>
-    ''' <param name="titleName"></param>
-    ''' <param name="fileData"></param>
-    ''' <returns>Boolean; True - The file exists; False - The file does not exist.</returns>
-    ''' <remarks>Function uses the process of creating a new file.</remarks>
-    Protected Overridable Function ExistFile(ByVal fileName As String, ByVal titleName As String, ByVal fileData As String) As Boolean
+    ''' <param name="fileName">Name the file to be checked</param>
+    ''' <param name="titleName">Title configuration file for an error message</param>
+    ''' <param name="fileData">Content that will be written if the file does not exist</param>
+    ''' <returns>Returns True if the exists or has successfully created new</returns>
+    ''' <remarks>Function uses the process of creating a new file</remarks>
+    Protected Overridable Function Check(ByVal fileName As String, ByVal titleName As String, ByVal fileData As String) As Boolean
 
         If File.Exists(fileName) Then
             Return True
@@ -74,12 +70,12 @@ Public MustInherit Class ConfigurationFile
     End Function
 
     ''' <summary>
-    ''' The function deletes the configuration file.
+    ''' Delete the configuration file
     ''' </summary>
-    ''' <param name="fileName"></param>
-    ''' <param name="titleName"></param>
-    ''' <returns>Boolean; True - The file is deleted; False - The file is not deleted;</returns>
-    ''' <remarks>The function contains a warning about not making the surgery.</remarks>
+    ''' <param name="fileName">Name the file to be deleted</param>
+    ''' <param name="titleName">Title configuration file used for the error message</param>
+    ''' <returns>Returns True if the file is deleted successfully</returns>
+    ''' <remarks>The function contains a warning about not making the surgery</remarks>
     Protected Overridable Function DeleteFile(ByVal fileName As String, ByVal titleName As String) As Boolean
 
         If File.Exists(fileName) Then
@@ -103,13 +99,13 @@ Public MustInherit Class ConfigurationFile
     End Function
 
     ''' <summary>
-    ''' The function creates a new configuration file.
+    ''' Creates a new configuration file
     ''' </summary>
-    ''' <param name="fileName"></param>
-    ''' <param name="titleName"></param>
-    ''' <param name="fileData"></param>
-    ''' <returns>Boolean; True - The file is created; False - The file is not created.</returns>
-    ''' <remarks>The function uses methods of writing and erasing.</remarks>
+    ''' <param name="fileName">Name of the file that will be created</param>
+    ''' <param name="titleName">Title the file that be in the header as a comment</param>
+    ''' <param name="fileData">Content will be written</param>
+    ''' <returns>Returns True if the file was created successfully</returns>
+    ''' <remarks>The function uses methods of writing and erasing</remarks>
     Protected Overridable Function CreateFile(ByVal fileName As String, ByVal titleName As String, ByVal fileData As String) As Boolean
         Dim tmpText As String
         Dim msgText As MessageText = New MessageText()
@@ -147,13 +143,13 @@ Public MustInherit Class ConfigurationFile
     End Function
 
     ''' <summary>
-    ''' Function for entry of parameter values.
+    ''' Write new content in the configuration file
     ''' </summary>
-    ''' <param name="fileName"></param>
-    ''' <param name="titleName"></param>
-    ''' <param name="fileData"></param>
-    ''' <returns>Boolean; True - Finished successfully; False - Not completed</returns>
-    ''' <remarks>The function automatically generates the header file.</remarks>
+    ''' <param name="fileName">Name the file to be used to write</param>
+    ''' <param name="titleName">Title to be in the header content as a comment</param>
+    ''' <param name="fileData">The full text of which will be written</param>
+    ''' <returns>Return true if successfully completed write</returns>
+    ''' <remarks>The function automatically generates the header file</remarks>
     Protected Overridable Function WriteFile(ByVal fileName As String, ByVal titleName As String, ByVal fileData As String) As Boolean
         'Configuration File Header
         Dim comment As String = "# Generated by Kitserver 6 Settings"
@@ -178,11 +174,11 @@ Public MustInherit Class ConfigurationFile
     End Function
 
     ''' <summary>
-    ''' The function to read values.
+    ''' Read key value from the configuration file
     ''' </summary>
-    ''' <param name="fileName"></param>
-    ''' <param name="keyValue"></param>
-    ''' <returns>Boolean: True - Successfull read; False - Don't read;</returns>
+    ''' <param name="fileName">The name of a configuration file from which to read</param>
+    ''' <param name="keyValue">The key name from which to read</param>
+    ''' <returns>Returns the string value of the key</returns>
     ''' <remarks>The function reads the value of a clean key.</remarks>
     Protected Overridable Function ReadFile(ByVal fileName As String, ByVal keyValue As String, Optional ByVal enableReplace As Boolean = True) As String
         Dim line As String
@@ -213,9 +209,9 @@ Public MustInherit Class ConfigurationFile
     ''' <summary>
     ''' Function converts a Boolean value to a numerical string.
     ''' </summary>
-    ''' <param name="inputValue"></param>
+    ''' <param name="inputValue">A parameter is converted to a numeric string value</param>
     ''' <returns>String: '1' - True; '2' - False;</returns>
-    ''' <remarks>Nothing</remarks>
+    ''' <remarks>Undefined value is converted to the same value os False</remarks>
     Protected Function ConvertEnable(ByVal inputValue As Boolean) As String
 
         If inputValue Then
@@ -229,9 +225,9 @@ Public MustInherit Class ConfigurationFile
     ''' <summary>
     ''' The function converts the string value to boolean.
     ''' </summary>
-    ''' <param name="inputValue"></param>
-    ''' <returns>Boolean: True - value > 0; False - value = 0</returns>
-    ''' <remarks>Nothing</remarks>
+    ''' <param name="inputValue">The numeric string variable that is converted to a Boolean value</param>
+    ''' <returns>Return False only as an input value of zero</returns>
+    ''' <remarks>Any nonzero value is converted to True</remarks>
     Protected Function ConvertValue(ByVal inputValue As String) As Boolean
 
         If inputValue = "0" Then
