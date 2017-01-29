@@ -188,7 +188,7 @@ Partial Class FormAbout
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(396, 259)
+        Me.ClientSize = New System.Drawing.Size(404, 267)
         Me.ControlBox = False
         Me.Controls.Add(Me.labelLicenseData)
         Me.Controls.Add(Me.labelLicense)

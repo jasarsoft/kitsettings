@@ -37,6 +37,7 @@
     ''' <param name="e"></param>
     Private Sub ButtonClose_Click(sender As Object, e As EventArgs) Handles buttonClose.Click
         'Close About form
-        Call Me.Close() 'Me.Dispose()
+        Call Me.Close()
+        'Me.Dispose()
     End Sub
 End Class
