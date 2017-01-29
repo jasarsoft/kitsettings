@@ -110,9 +110,9 @@
     <Compile Include="Classes\KitserverHelp.vb" />
     <Compile Include="Classes\KitserverFile.vb" />
     <Compile Include="Classes\Host.vb" />
-    <Compile Include="Module\Host.vb" />
-    <Compile Include="Module\Main.vb" />
-    <Compile Include="Module\Combo.vb" />
+    <Compile Include="Modules\Host.vb" />
+    <Compile Include="Modules\Main.vb" />
+    <Compile Include="Modules\Combo.vb" />
     <Compile Include="Forms\Main.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -144,7 +144,7 @@
     <Compile Include="Classes\PesFile.vb" />
     <Compile Include="Classes\PesFolder.vb" />
     <Compile Include="Classes\PesRegistry.vb" />
-    <Compile Include="Module\Server.vb" />
+    <Compile Include="Modules\Server.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\Server.resx">
