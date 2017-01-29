@@ -82,6 +82,7 @@ Partial Class FormMain
         Me.buttonSave = New System.Windows.Forms.Button()
         Me.buttonDefault = New System.Windows.Forms.Button()
         Me.toolTipMain = New System.Windows.Forms.ToolTip(Me.components)
+        Me.HostToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuMain.SuspendLayout()
         CType(Me.numericCameraZoom, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.numericSpeedModule, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -225,7 +226,7 @@ Partial Class FormMain
         '
         'menuItemSettings
         '
-        Me.menuItemSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuSettingsItemPES6})
+        Me.menuItemSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuSettingsItemPES6, Me.HostToolStripMenuItem})
         Me.menuItemSettings.Name = "menuItemSettings"
         Me.menuItemSettings.Size = New System.Drawing.Size(61, 20)
         Me.menuItemSettings.Text = "&Settings"
@@ -233,7 +234,7 @@ Partial Class FormMain
         'menuSettingsItemPES6
         '
         Me.menuSettingsItemPES6.Name = "menuSettingsItemPES6"
-        Me.menuSettingsItemPES6.Size = New System.Drawing.Size(102, 22)
+        Me.menuSettingsItemPES6.Size = New System.Drawing.Size(152, 22)
         Me.menuSettingsItemPES6.Text = "PES 6"
         '
         'menuItemHelp
@@ -579,6 +580,12 @@ Partial Class FormMain
         Me.toolTipMain.ReshowDelay = 100
         Me.toolTipMain.ShowAlways = True
         '
+        'HostToolStripMenuItem
+        '
+        Me.HostToolStripMenuItem.Name = "HostToolStripMenuItem"
+        Me.HostToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.HostToolStripMenuItem.Text = "&Host"
+        '
         'FormMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -691,5 +698,6 @@ Partial Class FormMain
     Friend WithEvents menuKitserverItemKeyBind As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuKitserverItemLodCfg As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents menuKitserverItemSetup As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents HostToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
