@@ -82,48 +82,48 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class\BootServer.vb" />
-    <Compile Include="Class\Afs2fs.vb" />
-    <Compile Include="Class\BallServer.vb" />
-    <Compile Include="Class\CameraZoomer.vb" />
-    <Compile Include="Class\About.vb" />
-    <Compile Include="Class\ConfigurationFile.vb" />
-    <Compile Include="Form\FormServer.Designer.vb">
-      <DependentUpon>FormServer.vb</DependentUpon>
+    <Compile Include="Classes\BootServer.vb" />
+    <Compile Include="Classes\Afs2fs.vb" />
+    <Compile Include="Classes\BallServer.vb" />
+    <Compile Include="Classes\CameraZoomer.vb" />
+    <Compile Include="Classes\About.vb" />
+    <Compile Include="Classes\ConfigurationFile.vb" />
+    <Compile Include="Forms\Server.Designer.vb">
+      <DependentUpon>Server.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\FormServer.vb">
+    <Compile Include="Forms\Server.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FormHost.Designer.vb">
-      <DependentUpon>FormHost.vb</DependentUpon>
+    <Compile Include="Forms\Host.Designer.vb">
+      <DependentUpon>Host.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\FormHost.vb">
+    <Compile Include="Forms\Host.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FormAbout.Designer.vb">
-      <DependentUpon>FormAbout.vb</DependentUpon>
+    <Compile Include="Forms\About.Designer.vb">
+      <DependentUpon>About.vb</DependentUpon>
     </Compile>
-    <Compile Include="Form\FormAbout.vb">
+    <Compile Include="Forms\About.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Class\Hash.vb" />
-    <Compile Include="Class\KitserverHelp.vb" />
-    <Compile Include="Class\KitserverFile.vb" />
-    <Compile Include="Class\Host\HostClass.vb" />
+    <Compile Include="Classes\Hash.vb" />
+    <Compile Include="Classes\KitserverHelp.vb" />
+    <Compile Include="Classes\KitserverFile.vb" />
+    <Compile Include="Classes\Host.vb" />
     <Compile Include="Module\Host.vb" />
     <Compile Include="Module\Main.vb" />
     <Compile Include="Module\Combo.vb" />
-    <Compile Include="Form\FormMain.vb">
+    <Compile Include="Forms\Main.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\FormMain.Designer.vb">
-      <DependentUpon>FormMain.vb</DependentUpon>
+    <Compile Include="Forms\Main.Designer.vb">
+      <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Class\MessageText.vb" />
-    <Compile Include="Class\MessageTitle.vb" />
-    <Compile Include="Class\KitServer.vb" />
-    <Compile Include="Class\KitLoader.vb" />
+    <Compile Include="Classes\MessageText.vb" />
+    <Compile Include="Classes\MessageTitle.vb" />
+    <Compile Include="Classes\KitServer.vb" />
+    <Compile Include="Classes\KitLoader.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -139,25 +139,25 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Class\Speeder.vb" />
-    <Compile Include="Class\Display.vb" />
-    <Compile Include="Class\PesFile.vb" />
-    <Compile Include="Class\PesFolder.vb" />
-    <Compile Include="Class\PesRegistry.vb" />
+    <Compile Include="Classes\Speeder.vb" />
+    <Compile Include="Classes\Display.vb" />
+    <Compile Include="Classes\PesFile.vb" />
+    <Compile Include="Classes\PesFolder.vb" />
+    <Compile Include="Classes\PesRegistry.vb" />
     <Compile Include="Module\Server.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Form\FormServer.resx">
-      <DependentUpon>FormServer.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Server.resx">
+      <DependentUpon>Server.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormAbout.resx">
-      <DependentUpon>FormAbout.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\About.resx">
+      <DependentUpon>About.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormHost.resx">
-      <DependentUpon>FormHost.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Host.resx">
+      <DependentUpon>Host.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\FormMain.resx">
-      <DependentUpon>FormMain.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\Main.resx">
+      <DependentUpon>Main.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
