@@ -6,11 +6,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AE7545F7-1844-4E36-8F5C-18C2A62A2C20}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>Jasarsoft.KitSettings.My.MyApplication</StartupObject>
+    <StartupObject>Sub Main</StartupObject>
     <RootNamespace>Jasarsoft.KitSettings</RootNamespace>
     <AssemblyName>kitsettings</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -47,7 +47,25 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon_128.ico</ApplicationIcon>
+    <ApplicationIcon>Resource\icon_128.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>47C846CC820E86B69D356C11F505BBD6D2A5410F</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timstamp.dll</ManifestTimestampUrl>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -70,6 +88,18 @@
     <Compile Include="Class\CameraZoomer.vb" />
     <Compile Include="Class\About.vb" />
     <Compile Include="Class\ConfigurationFile.vb" />
+    <Compile Include="Form\FormServer.Designer.vb">
+      <DependentUpon>FormServer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormServer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\FormHost.Designer.vb">
+      <DependentUpon>FormHost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form\FormHost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form\FormAbout.Designer.vb">
       <DependentUpon>FormAbout.vb</DependentUpon>
     </Compile>
@@ -79,6 +109,9 @@
     <Compile Include="Class\Hash.vb" />
     <Compile Include="Class\KitserverHelp.vb" />
     <Compile Include="Class\KitserverFile.vb" />
+    <Compile Include="Class\Host\HostClass.vb" />
+    <Compile Include="Module\Host.vb" />
+    <Compile Include="Module\Main.vb" />
     <Compile Include="Module\Combo.vb" />
     <Compile Include="Form\FormMain.vb">
       <SubType>Form</SubType>
@@ -111,10 +144,17 @@
     <Compile Include="Class\PesFile.vb" />
     <Compile Include="Class\PesFolder.vb" />
     <Compile Include="Class\PesRegistry.vb" />
+    <Compile Include="Module\Server.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form\FormServer.resx">
+      <DependentUpon>FormServer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\FormAbout.resx">
       <DependentUpon>FormAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\FormHost.resx">
+      <DependentUpon>FormHost.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form\FormMain.resx">
       <DependentUpon>FormMain.vb</DependentUpon>
@@ -128,6 +168,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="My Project\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -139,8 +182,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon_128.ico" />
+    <Content Include="Resource\icon_128.ico" />
+    <Content Include="Resource\icon_256.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
