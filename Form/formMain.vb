@@ -185,7 +185,6 @@ Public Class FormMain
         Process.Start("notepad.exe", fileName)
     End Sub
 
-    
 #End Region
 
 #Region "Events"
@@ -568,4 +567,12 @@ Public Class FormMain
 
 #End Region
 
+    Private Sub FormMain_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Application.Exit()
+    End Sub
+
+    Private Sub HostToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HostToolStripMenuItem.Click
+        Host.Form = New FormHost()
+        Host.Form.Show()
+    End Sub
 End Class
