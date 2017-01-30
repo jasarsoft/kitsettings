@@ -19,5 +19,8 @@
             Modules.Host.Form.listViewHost.Focus()
         End Sub
 
+        Private Sub Server_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+            Modules.Host.Form.Enabled = True
+        End Sub
     End Class
 End Namespace
