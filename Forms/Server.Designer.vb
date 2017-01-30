@@ -90,7 +90,7 @@
             Me.buttonSave.Text = "SAVE SERVER"
             Me.buttonSave.UseVisualStyleBackColor = True
             '
-            'FormServer
+            'Server
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -106,7 +106,7 @@
             Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
             Me.MaximizeBox = False
             Me.MinimizeBox = False
-            Me.Name = "FormServer"
+            Me.Name = "Server"
             Me.ShowIcon = False
             Me.ShowInTaskbar = False
             Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
