@@ -105,50 +105,42 @@ Namespace Classes
             Dim text As New List(Of String)
 
             If File.Exists(_path) Then
+                Dim header As String = "#Kitserver 6 Settings"
+                Dim footer As String = "#####################"
+
                 Using sr As StreamReader = New StreamReader(_path)
                     Do
                         line = sr.ReadLine
-                        text.Add(line)
-                        If line.StartsWith("#Kitserver 6 Settings") Then
-                            Do
+                        If line.StartsWith(header) Then
+                            text.Add(line)
+                            While True
                                 line = sr.ReadLine
-                                If line.StartsWith("#####################") Then
+                                If line.StartsWith(footer) Then
                                     For Each name As String In _servers
                                         text.Add(name)
                                     Next
+                                    text.Add(line)
                                     done = True
-                                    Exit Do
+                                    Exit While
                                 End If
-                            Loop Until sr.EndOfStream
-
-                            'While True
-                            '    line = sr.ReadLine
-                            '    If line.StartsWith("#####################") Then
-                            '        For Each name As String In _servers
-                            '            text.Add(name)
-                            '        Next
-                            '        done = True
-                            '        Exit While
-                            '    End If
-                            '    If sr.EndOfStream Then
-                            '        done = False
-                            '        Exit While
-                            '    End If
-                            'End While
+                                If sr.EndOfStream Then Exit While
+                            End While
+                        Else
+                            text.Add(line)
                         End If
                     Loop Until sr.EndOfStream
 
                     If Not done Then
                         text.Add("")
-                        text.Add("#Kitserver 6 Settings")
+                        text.Add(header)
                         For Each name As String In _servers
                             text.Add(name)
                         Next
-                        text.Add("#####################")
+                        text.Add(footer)
                     End If
                 End Using
 
-                Using sw As StreamWriter = File.CreateText(_path + "new")
+                Using sw As StreamWriter = File.CreateText(_path)
                     For Each name As String In text
                         sw.WriteLine(name)
                     Next
@@ -157,7 +149,5 @@ Namespace Classes
 
             Return done
         End Function
-
-
     End Class
 End Namespace
