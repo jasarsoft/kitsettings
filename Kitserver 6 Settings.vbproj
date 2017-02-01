@@ -88,36 +88,35 @@
     <Compile Include="Classes\CameraZoomer.vb" />
     <Compile Include="Classes\About.vb" />
     <Compile Include="Classes\ConfigurationFile.vb" />
-    <Compile Include="Forms\Server.Designer.vb">
-      <DependentUpon>Server.vb</DependentUpon>
+    <Compile Include="Forms\ServerForm.Designer.vb">
+      <DependentUpon>ServerForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Server.vb">
+    <Compile Include="Forms\ServerForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Host.Designer.vb">
-      <DependentUpon>Host.vb</DependentUpon>
+    <Compile Include="Forms\HostForm.Designer.vb">
+      <DependentUpon>HostForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Host.vb">
+    <Compile Include="Forms\HostForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\About.Designer.vb">
-      <DependentUpon>About.vb</DependentUpon>
+    <Compile Include="Forms\AboutForm.Designer.vb">
+      <DependentUpon>AboutForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\About.vb">
+    <Compile Include="Forms\AboutForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Classes\Hash.vb" />
     <Compile Include="Classes\KitserverHelp.vb" />
     <Compile Include="Classes\KitserverFile.vb" />
     <Compile Include="Classes\Host.vb" />
-    <Compile Include="Modules\Host.vb" />
     <Compile Include="Modules\Main.vb" />
     <Compile Include="Modules\Combo.vb" />
-    <Compile Include="Forms\Main.vb">
+    <Compile Include="Forms\SettingsForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Main.Designer.vb">
-      <DependentUpon>Main.vb</DependentUpon>
+    <Compile Include="Forms\SettingsForm.Designer.vb">
+      <DependentUpon>SettingsForm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Classes\MessageText.vb" />
@@ -144,20 +143,19 @@
     <Compile Include="Classes\PesFile.vb" />
     <Compile Include="Classes\PesFolder.vb" />
     <Compile Include="Classes\PesRegistry.vb" />
-    <Compile Include="Modules\Server.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\Server.resx">
-      <DependentUpon>Server.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\ServerForm.resx">
+      <DependentUpon>ServerForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\About.resx">
-      <DependentUpon>About.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\AboutForm.resx">
+      <DependentUpon>AboutForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Host.resx">
-      <DependentUpon>Host.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\HostForm.resx">
+      <DependentUpon>HostForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Main.resx">
-      <DependentUpon>Main.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
+      <DependentUpon>SettingsForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
