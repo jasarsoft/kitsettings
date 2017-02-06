@@ -135,7 +135,17 @@
             End If
         Next
 
-        host.Write()
+        Dim msgText As String
+        Dim msgTitle As New Classes.MessageTitle()
+
+        If host.Write() Then
+            msgText = "Host settings have been successfully saved."
+            MessageBox.Show(msgText, msgTitle.TitleInfo, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Else
+            msgText = "Host items are not successfully saved."
+            MessageBox.Show(msgText, msgTitle.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+        'Me.Close()
     End Sub
 
     Private Sub Host_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
