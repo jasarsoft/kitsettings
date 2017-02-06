@@ -4,21 +4,21 @@
 Public Class SettingsForm
 #Region "Fields"
     ''' <summary>Instance Afs2fs class</summary>
-    Private _afs2fs As Classes.Afs2fs
+    Private _afs2fs As Afs2fs
     ''' <summary>Instance Ball Server class</summary>
-    Private _ballServer As Classes.BallServer
+    Private _ballServer As BallServer
     ''' <summary>Instance Boot Server class</summary>
-    Private _bootServer As Classes.BootServer
+    Private _bootServer As BootServer
     ''' <summary>Instance Camera Zoomer class</summary>
-    Private _cameraZoomer As Classes.CameraZoomer
+    Private _cameraZoomer As CameraZoomer
     ''' <summary>Instance Kit Server class</summary>
-    Private _kitServer As Classes.KitServer
+    Private _kitServer As KitServer
     ''' <summary>Instance Kit Loader class</summary>
-    Private _kitLoader As Classes.KitLoader
+    Private _kitLoader As KitLoader
     ''' <summary>Instance Speeder Module class</summary>
-    Private _speeder As Classes.Speeder
+    Private _speeder As Speeder
     ''' <summary>Instance Custom Display class</summary>
-    Private _display As Classes.Display
+    Private _display As Display
 
     ''' <summary>
     ''' The delegate functions to save settings
@@ -36,14 +36,14 @@ Public Class SettingsForm
         Me.InitializeComponent()
 
         ' Initialization class
-        _afs2fs = New Classes.Afs2fs()
-        _ballServer = New Classes.BallServer()
-        _bootServer = New Classes.BootServer()
-        _cameraZoomer = New Classes.CameraZoomer()
-        _kitServer = New Classes.KitServer()
-        _kitLoader = New Classes.KitLoader()
-        _speeder = New Classes.Speeder()
-        _display = New Classes.Display()
+        _afs2fs = New Afs2fs()
+        _ballServer = New BallServer()
+        _bootServer = New BootServer()
+        _cameraZoomer = New CameraZoomer()
+        _kitServer = New KitServer()
+        _kitLoader = New KitLoader()
+        _speeder = New Speeder()
+        _display = New Display()
     End Sub
 #End Region
 
@@ -105,7 +105,7 @@ Public Class SettingsForm
     Private Sub SaveSettings()
         Dim settings As Save
         Dim msgText As String
-        Dim msgTitle As Classes.MessageTitle = New Classes.MessageTitle()
+        Dim msgTitle As Title = New Title()
 
         settings = New Save(AddressOf _kitServer.WriteFile)
         settings = [Delegate].Combine(settings, New Save(AddressOf _ballServer.WriteFile))
@@ -168,7 +168,7 @@ Public Class SettingsForm
     ''' Start PES application
     ''' </summary>
     Private Sub RunPES()
-        Dim pesFile As New Classes.PesFile()
+        Dim pesFile As New PesFile()
 
         If pesFile.Check(pesFile.AppPES6) Then
             Process.Start(pesFile.AppPES6)
@@ -195,8 +195,25 @@ Public Class SettingsForm
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Form Main Load Event</remarks>
     Private Sub FormMain_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
-
         DefaultValue()
+
+        'If _kitLoader.Valid() Then
+        '    Me.numericReservedMemory.Enabled = True
+        '    Me.combo3DAnalyzer.Enabled = True
+        '    Me.comboRenderDirectX.Enabled = True
+        'Else
+        '    Dim text As String
+        '    Dim caption As New Title()
+
+        '    Me.combo3DAnalyzer.Enabled = False
+        '    Me.comboRenderDirectX.Enabled = False
+        '    Me.numericReservedMemory.Enabled = False
+
+        '    text = "Kitserver 6 Settings is not propertly installed." & Environment.NewLine
+        '    text &= "Missing main module of kitserver, Kit Loader (kload.dll)."
+        '    MessageBox.Show(text, caption.TitleError, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '    Application.Exit()
+        'End If
 
         If _kitServer.Check() And _kitServer.ReadFile() Then
             Modules.Combo.SetBoolValue(Me.comboHDKits, _kitServer.HdKitsEnable)
@@ -459,7 +476,7 @@ Public Class SettingsForm
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Kitserver Item KeyBind Click Event</remarks>
     Private Sub MenuKitserverItemKeyBind_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuKitserverItemKeyBind.Click
-        Dim kitserverFile As New Classes.KitserverFile
+        Dim kitserverFile As New KitserverFile
 
         If kitserverFile.Check(kitserverFile.AppKeyBind) Then
             Process.Start(kitserverFile.AppKeyBind)
@@ -472,7 +489,7 @@ Public Class SettingsForm
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Kitserver Item LodCfg Click Event</remarks>
     Private Sub MenuKitserverItemLodCfg_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuKitserverItemLodCfg.Click
-        Dim kitserverFile As New Classes.KitserverFile
+        Dim kitserverFile As New KitserverFile
 
         If kitserverFile.Check(kitserverFile.AppLodMixer) Then
             Process.Start(kitserverFile.AppLodMixer)
@@ -485,7 +502,7 @@ Public Class SettingsForm
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Kitserver Item Setup Click Event</remarks>
     Private Sub MenuKitserverItemSetup_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuKitserverItemSetup.Click
-        Dim kitserverFile As New Classes.KitserverFile
+        Dim kitserverFile As New KitserverFile
 
         If kitserverFile.Check(kitserverFile.AppSetup) Then
             Process.Start(kitserverFile.AppSetup)
@@ -501,7 +518,7 @@ Public Class SettingsForm
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Settings Item PES6 Click Event</remarks>
     Private Sub MenuSettingsItemPES6_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuSettingsItemPES6.Click
-        Dim pesFile As New Classes.PesFile()
+        Dim pesFile As New PesFile()
 
         If pesFile.Check(pesFile.AppSettings) Then
             Process.Start(pesFile.AppSettings)
@@ -518,8 +535,8 @@ Public Class SettingsForm
     ''' <remarks>Menu Help Item Kitserver Click Event</remarks>
     Private Sub MenuHelpItemKitserver_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuHelpItemKitserver.Click
 
-        Dim msgTitle As New Classes.MessageTitle()
-        Dim help As Classes.KitserverHelp = New Classes.KitserverHelp()
+        Dim msgTitle As New Title()
+        Dim help As KitserverHelp = New KitserverHelp()
 
         If Not help.Check() Then
             Dim msgResult As DialogResult
@@ -545,7 +562,7 @@ Public Class SettingsForm
     ''' <param name="e">Arguments event on the called object</param>
     ''' <remarks>Menu Help Item PES6 Readme Click Event</remarks>
     Private Sub MenuHelpItemPES6Readme_Click(ByVal sender As Object, ByVal e As EventArgs) Handles menuHelpItemPES6Readme.Click
-        Dim pesFile As New Classes.PesFile()
+        Dim pesFile As New PesFile()
 
         If pesFile.Check(pesFile.ReadmeFile) Then
             Process.Start(pesFile.ReadmeFile)

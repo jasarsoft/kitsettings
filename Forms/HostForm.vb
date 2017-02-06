@@ -1,5 +1,5 @@
 ﻿Public Class HostForm
-    Private host As Classes.Host
+    Private host As Host
     Private serverForm As ServerForm
 
     Public Sub New()
@@ -7,7 +7,7 @@
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        host = New Classes.Host()
+        host = New Host()
     End Sub
 
     Private Sub FormHost_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -136,7 +136,7 @@
         Next
 
         Dim msgText As String
-        Dim msgTitle As New Classes.MessageTitle()
+        Dim msgTitle As New Title()
 
         If host.Write() Then
             msgText = "Host settings have been successfully saved."

@@ -1,7 +1,7 @@
 ﻿Public NotInheritable Class AboutForm
 
     ''' <summary>Private Application About Variable</summary>
-    Private appAbout As Classes.About
+    Private about As About
 
     ''' <summary>
     ''' Default Form Constructor
@@ -12,7 +12,7 @@
         Call InitializeComponent()
 
         ' Initialization About Class
-        appAbout = New Classes.About()
+        about = New About()
     End Sub
 
     ''' <summary>
@@ -22,12 +22,12 @@
     ''' <param name="e"></param>
     Private Sub FormAbout_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'Setting information about the application
-        Me.labelNameData.Text = appAbout.Title
-        Me.labelVersionData.Text = appAbout.Version
-        Me.labelDeveloperData.Text = appAbout.Developer
-        Me.labelLicenseData.Text = appAbout.License
-        Me.labelWebsiteData.Text = appAbout.Website
-        Me.labelDescriptionData.Text = appAbout.Description
+        Me.labelNameData.Text = about.Title
+        Me.labelVersionData.Text = about.Version
+        Me.labelDeveloperData.Text = about.Developer
+        Me.labelLicenseData.Text = about.License
+        Me.labelWebsiteData.Text = about.Website
+        Me.labelDescriptionData.Text = about.Description
     End Sub
 
     ''' <summary>
@@ -42,6 +42,6 @@
     End Sub
 
     Private Sub LabelWebsiteData_Click(sender As Object, e As EventArgs) Handles labelWebsiteData.Click
-        Process.Start(appAbout.Website)
+        Process.Start(about.Website)
     End Sub
 End Class
