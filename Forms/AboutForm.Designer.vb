@@ -113,6 +113,7 @@ Partial Class AboutForm
         '
         Me.labelWebsiteData.BackColor = System.Drawing.SystemColors.ControlLight
         Me.labelWebsiteData.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.labelWebsiteData.Cursor = System.Windows.Forms.Cursors.Hand
         Me.labelWebsiteData.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.labelWebsiteData.Location = New System.Drawing.Point(112, 125)
         Me.labelWebsiteData.Name = "labelWebsiteData"
@@ -184,11 +185,11 @@ Partial Class AboutForm
         Me.labelLicense.Text = "License:"
         Me.labelLicense.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'FormAbout
+        'AboutForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(404, 267)
+        Me.ClientSize = New System.Drawing.Size(400, 263)
         Me.ControlBox = False
         Me.Controls.Add(Me.labelLicenseData)
         Me.Controls.Add(Me.labelLicense)
@@ -208,7 +209,7 @@ Partial Class AboutForm
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Location = New System.Drawing.Point(256, 128)
         Me.MaximizeBox = False
-        Me.Name = "FormAbout"
+        Me.Name = "AboutForm"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

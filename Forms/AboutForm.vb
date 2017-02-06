@@ -40,4 +40,8 @@
         Call Me.Close()
         'Me.Dispose()
     End Sub
+
+    Private Sub LabelWebsiteData_Click(sender As Object, e As EventArgs) Handles labelWebsiteData.Click
+        Process.Start(appAbout.Website)
+    End Sub
 End Class
